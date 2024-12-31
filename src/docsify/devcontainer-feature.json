@@ -1,4 +1,5 @@
 {
+    "name": "docsify",
     "id": "docsify",
     "version": "0.1.0",
     "description": "Automatically serves ./docs workspace directory via 'docsify serve' in the background.",
