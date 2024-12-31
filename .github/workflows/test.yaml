@@ -1,0 +1,27 @@
+name: "CI - Test Features"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        features:
+          - docsify
+        baseImage:
+          - mcr.microsoft.com/devcontainers/base:ubuntu
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # pin@v4
+
+      - name: "install latest devcontainer CLI"
+        run: npm install -g @devcontainers/cli
+
+      - name: "generating tests for '${{ matrix.features }}' against '${{ matrix.baseImage }}'"
+        run: devcontainer features test --skip-duplicated -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
