@@ -1,0 +1,19 @@
+{
+    "port_5678": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "docsify": {
+                "port": "5678",
+                "livereload-port": "5679"
+            }
+        }
+    },
+    "docspath": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "docsify": {
+                "docs-path": "foobar"
+            }
+        }
+    }
+}

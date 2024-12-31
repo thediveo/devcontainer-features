@@ -1,0 +1,31 @@
+{
+    "id": "docsify",
+    "version": "0.1.0",
+    "description": "Automatically serves ./docs workspace directory via 'docsify serve' in the background.",
+    "options": {
+        "port": {
+            "type": "string",
+            "description": "TCP Port serving the docsified documentation",
+            "proposals": ["3300"],
+            "default": "3300"
+        },
+        "livereload-port": {
+            "type": "string",
+            "description": "TCP port to receive live reload events from",
+            "proposals": ["3301"],
+            "default": "3301"
+        },
+        "docs-path": {
+            "type": "string",
+            "description": "workspace relative directory to serve from",
+            "proposals": ["docs"],
+            "default": "docs"
+        }
+    },
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        }
+    },
+    "postStartCommand": "/usr/local/bin/docsify-serve"
+}
