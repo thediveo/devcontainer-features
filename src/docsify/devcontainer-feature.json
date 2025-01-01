@@ -6,7 +6,7 @@
     "options": {
         "port": {
             "type": "string",
-            "description": "TCP Port serving the docsified documentation",
+            "description": "TCP port serving the docsified documentation",
             "proposals": ["3300"],
             "default": "3300"
         },

@@ -45,7 +45,7 @@ DEFAULT_README_MD=$(cat <<EOF
 EOF
 )
 
-tee "$DOCSIFY_SERVE_PATH" > /dev/null \
+tee "${DOCSIFY_SERVE_PATH}" > /dev/null \
 << EOF
 #!/usr/bin/env sh
 mkdir -p "${DOCS_PATH}"
@@ -55,4 +55,4 @@ if [ ! -f "${DOCS_PATH}/index.html" ]; then
 fi
 nohup bash -c "docsify serve -p=${PORT} -P=${LIVERELOAD_PORT} --no-open ./${DOCS_PATH} &" >/tmp/nohup.log 2>&1
 EOF
-chmod 0755 /usr/local/bin/docsify-serve
+chmod 0755 "${DOCSIFY_SERVE_PATH}"

@@ -1,5 +1,5 @@
 
-# docsify
+# docsify (docsify)
 
 Automatically serves ./docs workspace directory via 'docsify serve' in the background.
 
@@ -15,7 +15,7 @@ Automatically serves ./docs workspace directory via 'docsify serve' in the backg
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| port | TCP Port serving the docsified documentation | string | 3300 |
+| port | TCP port serving the docsified documentation | string | 3300 |
 | livereload-port | TCP port to receive live reload events from | string | 3301 |
 | docs-path | workspace relative directory to serve from | string | docs |
 
