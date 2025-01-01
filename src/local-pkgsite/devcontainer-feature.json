@@ -1,8 +1,28 @@
 {
     "name": "Local Go Pkgsite",
     "id": "local-pkgsite",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "A local Go pkgsite serving the module documentation",
+    "options": {
+        "port": {
+            "type": "string",
+            "description": "TCP port serving packages documentation",
+            "proposals": ["6060"],
+            "default": "6060"
+        },
+        "reload-delay": {
+            "type": "string",
+            "description": "time in milliseconds to delay the reload event following file changes",
+            "proposals": ["2000"],
+            "default": "2000"
+        },
+        "reload-debounce": {
+            "type": "string",
+            "description": "time in milliseconds to restrict the frequency in which browser:reload events can be emitted to connected clients",
+            "proposals": ["5000"],
+            "default": "5000"
+        }
+    },
     "dependsOn": {
         "ghcr.io/devcontainers/features/go:1": {
             "version": "latest",
@@ -12,7 +32,5 @@
             "version": "lts"
         }
     },
-    "containerEnv": {
-        "PATH": "/usr/local/pkgsite/bin:${PATH}"
-    }
+    "postStartCommand": "/usr/local/bin/pkgsite-serve"
 }
