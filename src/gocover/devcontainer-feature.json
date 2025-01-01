@@ -1,0 +1,54 @@
+{
+    "name": "Go Coverage with Badge",
+    "id": "gocover",
+    "version": "0.1.0",
+    "description": "runs Go unit tests with coverages, updating the README.md with a coverage badge.",
+    "options": {
+        "root": {
+            "type": "boolean",
+            "default": false,
+            "description": "runs unit tests additionally as root"
+        },
+        "html": {
+            "type": "boolean",
+            "default": false,
+            "description": "generates coverage.html"
+        },
+        "count": {
+            "type": "string",
+            "default": "1",
+            "description": "runs tests count times"
+        },
+        "num-programs": {
+            "type": "string",
+            "default": "",
+            "description": "if set, the number of test programs that can be run in parallel"
+        },
+        "race": {
+            "type": "boolean",
+            "default": true,
+            "description": "run tests with race detector enabled"
+        },
+        "verbose": {
+            "type": "boolean",
+            "default": true,
+            "description": "run tests with -v"
+        },
+        "green": {
+            "type": "string",
+            "default": "80",
+            "description": "percentage number for the badge to become green"
+        },
+        "yellow": {
+            "type": "string",
+            "default": "50",
+            "description": "percentage number for the badge to become yellow"
+        }
+    },
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "latest",
+            "golangciLintVersion": "latest"
+        }
+    }
+}
