@@ -7,7 +7,7 @@ A local Go pkgsite serving the module documentation
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/local-pkgsite:0": {}
+    "ghcr.io/thediveo/devcontainers-features/local-pkgsite:0": {}
 }
 ```
 
@@ -33,4 +33,4 @@ forms the basis for this devcontainer feature.
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/local-pkgsite/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](devcontainer-feature.json).  Add additional notes to a `NOTES.md`._

@@ -7,7 +7,7 @@ Automatically serves ./docs workspace directory via 'docsify serve' in the backg
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/docsify:0": {}
+    "ghcr.io/thediveo/devcontainers-features/docsify:0": {}
 }
 ```
 
@@ -36,4 +36,4 @@ created.
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/docsify/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
