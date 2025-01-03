@@ -19,6 +19,8 @@ export GOCACHE=/tmp/gotools/cache
 
 go install github.com/AlexBeauchemin/gobadge@latest
 
+rm -rf /tmp/gotools
+
 tee "${GOCOVER_PATH}" > /dev/null \
 << EOF
 #!/usr/bin/env bash

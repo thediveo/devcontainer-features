@@ -13,6 +13,9 @@ mkdir -p /tmp/gotools
 export GOCACHE=/tmp/gotools/cache
 
 go install golang.org/x/pkgsite/cmd/pkgsite@latest
+
+rm -rf /tmp/gotools
+
 PKGSITE_BIN=$(which pkgsite)
 
 npm -g install browser-sync

@@ -15,3 +15,5 @@ rm -rf /tmp/goreportcard
 go install github.com/gordonklaus/ineffassign@latest
 # Install the missing misspell, oh well...
 go install github.com/client9/misspell/cmd/misspell@latest
+
+rm -rf /tmp/gotools

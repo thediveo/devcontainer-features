@@ -1,0 +1,12 @@
+{
+    "name": "gopkggroupfix",
+    "id": "gopkggroupfix",
+    "version": "0.1.0",
+    "description": "fixes missing /go/pkg group access mode.",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "latest",
+            "golangciLintVersion": "latest"
+        }
+    }
+}

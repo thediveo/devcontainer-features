@@ -7,3 +7,5 @@ mkdir -p /tmp/gotools
 export GOCACHE=/tmp/gotools/cache
 
 go install github.com/oligot/go-mod-upgrade@latest
+
+rm -rf /tmp/gotools
