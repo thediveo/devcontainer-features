@@ -1,13 +1,13 @@
 
-# Go Report Card (goreportcard)
+# go-mod-upgrade (go-mod-upgrade)
 
-provides goreportcard-cli.
+upgrade outdated Go dependencies interactively.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainers-features/goreportcard:0": {}
+    "ghcr.io/thediveo/devcontainers-features/go-mod-upgrade:0": {}
 }
 ```
 

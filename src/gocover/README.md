@@ -7,7 +7,7 @@ runs Go unit tests with coverages, updating the README.md with a coverage badge.
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/gocover:0": {}
+    "ghcr.io/thediveo/devcontainers-features/gocover:0": {}
 }
 ```
 
@@ -54,4 +54,4 @@ Tested only with
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/gocover/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
