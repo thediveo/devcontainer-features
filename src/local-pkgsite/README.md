@@ -7,7 +7,7 @@ A local Go pkgsite serving the module documentation
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainers-features/local-pkgsite:0": {}
+    "ghcr.io/thediveo/devcontainer-features/local-pkgsite:0": {}
 }
 ```
 

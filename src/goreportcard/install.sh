@@ -3,6 +3,9 @@ set -e
 
 echo "Activating feature 'goreportcard'..."
 
+mkdir -p /tmp/gotools
+export GOCACHE=/tmp/gotools/cache
+
 git clone https://github.com/gojp/goreportcard.git /tmp/goreportcard
 (cd /tmp/goreportcard && make install && go install ./cmd/goreportcard-cli)
 rm -rf /tmp/goreportcard 

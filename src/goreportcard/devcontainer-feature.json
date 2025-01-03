@@ -1,7 +1,7 @@
 {
     "name": "Go Report Card",
     "id": "goreportcard",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "provides goreportcard-cli.",
     "dependsOn": {
         "ghcr.io/devcontainers/features/go:1": {

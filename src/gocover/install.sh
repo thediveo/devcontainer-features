@@ -14,6 +14,9 @@ YELLOW=${YELLOW:-50}
 
 echo "Activating feature 'gocoverbadge'..."
 
+mkdir -p /tmp/gotools
+export GOCACHE=/tmp/gotools/cache
+
 go install github.com/AlexBeauchemin/gobadge@latest
 
 tee "${GOCOVER_PATH}" > /dev/null \

@@ -1,7 +1,7 @@
 {
     "name": "Local Go Pkgsite",
     "id": "local-pkgsite",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A local Go pkgsite serving the module documentation",
     "options": {
         "port": {

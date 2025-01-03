@@ -7,7 +7,7 @@ runs Go unit tests with coverages, updating the README.md with a coverage badge.
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainers-features/gocover:0": {}
+    "ghcr.io/thediveo/devcontainer-features/gocover:0": {}
 }
 ```
 

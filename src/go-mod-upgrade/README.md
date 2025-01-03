@@ -7,7 +7,7 @@ upgrade outdated Go dependencies interactively.
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainers-features/go-mod-upgrade:0": {}
+    "ghcr.io/thediveo/devcontainer-features/go-mod-upgrade:0": {}
 }
 ```
 

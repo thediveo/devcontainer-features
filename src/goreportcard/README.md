@@ -7,7 +7,7 @@ provides goreportcard-cli.
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainers-features/goreportcard:0": {}
+    "ghcr.io/thediveo/devcontainer-features/goreportcard:0": {}
 }
 ```
 

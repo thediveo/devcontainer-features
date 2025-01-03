@@ -9,6 +9,9 @@ RELOAD_DEBOUNCE=${RELOAD_DEBOUNCE:-5000}
 
 echo "Activating feature 'local-pkgsite'..."
 
+mkdir -p /tmp/gotools
+export GOCACHE=/tmp/gotools/cache
+
 go install golang.org/x/pkgsite/cmd/pkgsite@latest
 PKGSITE_BIN=$(which pkgsite)
 
