@@ -1,13 +1,13 @@
 
-# go-mod-upgrade (go-mod-upgrade)
+# pin-github-action (pin-github-action)
 
-upgrade outdated Go dependencies interactively.
+Pin your GitHub actions to a specific hash.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/go-mod-upgrade:0": {}
+    "ghcr.io/thediveo/devcontainer-features/pin-github-action:0": {}
 }
 ```
 

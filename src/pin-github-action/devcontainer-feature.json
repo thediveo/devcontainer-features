@@ -1,0 +1,11 @@
+{
+    "name": "pin-github-action",
+    "id": "pin-github-action",
+    "version": "0.1.0",
+    "description": "Pin your GitHub actions to a specific hash.",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        }
+    }
+}

@@ -10,3 +10,5 @@
   set of presets.
 - [go-mod-upgrade](src/go-mod-upgrade/README.md) – provides obligot's `go-mod-upgrade`
   for updating outdated Go dependencies interactively.
+- [pin-github-action](src/pin-github-action/README.md) – provides mheaps's
+  `pin-github-action` for pinning GitHub actions to specific hashes.
