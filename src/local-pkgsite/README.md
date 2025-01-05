@@ -26,9 +26,9 @@ Tested only with
 
 ## Acknowledgement
 
-[@mdaverde](https://github.com/mdaverde) for his blog post [Build your Golang
-package docs locally](https://mdaverde.com/posts/golang-local-docs/) that forms
-the basis for this devcontainer feature.
+...to [@mdaverde](https://github.com/mdaverde) for his blog post [Build your
+Golang package docs locally](https://mdaverde.com/posts/golang-local-docs/) that
+forms the basis for this devcontainer feature.
 
 
 ---
