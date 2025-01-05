@@ -21,16 +21,24 @@ PKGSITE_BIN=$(which pkgsite)
 npm -g install browser-sync
 npm -g install nodemon
 
-source /usr/local/share/nvm/nvm.sh
-NPMBINS="/usr/local/share/nvm/versions/node/$(nvm current)/bin"
-
 tee "${PKGSITE_SERVE_PATH}" > /dev/null \
 << EOF
 #!/usr/bin/env sh
-INT_PORT=$(comm -23 <(seq 49152 65535 | sort) \
+
+# we need to explicitly "activate" (the current) node here, as otherwise
+# devcontainers using our feature and also setting their remoteEnv PATH will
+# cause our script to fail when run as the postStartCommand. 
+. /usr/local/share/nvm/nvm.sh
+nvm use node
+
+# Pick a random local IP port that is currently available. Since this isn't
+# really an atomic operation it has a small chance to fail, but for the moment
+# we have to live with this chance.
+INT_PORT=$(comm -23 <(seq $(cat /proc/sys/net/ipv4/ip_local_port_range | tr ' ' '\n') | sort) \
     <(netstat -ntl | awk '/LISTEN/ {split($4,a,":"); print a[2]}' | sort -u) 2>/dev/null \
     | shuf | head -n 1)
-nohup bash -c "${NPMBINS}/browser-sync start --port ${PORT} --proxy localhost:\${INT_PORT} --reload-delay ${RELOAD_DELAY} --reload-debounce ${RELOAD_DEBOUNCE} --no-ui --no-open &" >/tmp/nohup-browser-sync.log 2>&1
-nohup bash -c "${NPMBINS}/nodemon --signal SIGTERM --watch './**/*' -e go --watch 'go.mod' --exec \"browser-sync --port ${PORT} reload && ${PKGSITE_BIN} -http=localhost:\${INT_PORT} .\" &" >/tmp/nohup.log 2>&1
+
+nohup bash -c "browser-sync start --port ${PORT} --proxy localhost:\${INT_PORT} --reload-delay ${RELOAD_DELAY} --reload-debounce ${RELOAD_DEBOUNCE} --no-ui --no-open &" >/tmp/nohup-browser-sync.log 2>&1
+nohup bash -c "nodemon --signal SIGTERM --watch './**/*' -e go --watch 'go.mod' --exec \"browser-sync --port ${PORT} reload && ${PKGSITE_BIN} -http=localhost:\${INT_PORT} .\" &" >/tmp/nohup.log 2>&1
 EOF
 chmod 0755 "${PKGSITE_SERVE_PATH}"
