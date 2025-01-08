@@ -17,10 +17,12 @@ runs Go unit tests with coverages, updating the README.md with a coverage badge.
 |-----|-----|-----|-----|
 | root | runs unit tests additionally as root | boolean | false |
 | html | generates coverage.html | boolean | false |
-| count | runs tests count times | string | 1 |
-| num-programs | if set, the number of test programs that can be run in parallel | string | - |
-| race | run tests with race detector enabled | boolean | true |
+| count | runs tests count times (-count) | string | 1 |
+| num-programs | if set, the number of test programs that can be run in parallel (-p) | string | - |
+| race | run tests with race detector enabled (-race) | boolean | true |
 | verbose | run tests with -v | boolean | true |
+| tags | comma-separated list of additional build tags (-tags) | string | - |
+| uncovered-packages | space separated optional list of package patterns to exclude from coverage analysis | string | - |
 | green | percentage number for the badge to become green | string | 80 |
 | yellow | percentage number for the badge to become yellow | string | 50 |
 
