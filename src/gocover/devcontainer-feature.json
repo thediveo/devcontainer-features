@@ -1,7 +1,7 @@
 {
     "name": "Go Coverage with Badge",
     "id": "gocover",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "runs Go unit tests with coverages, updating the README.md with a coverage badge.",
     "options": {
         "root": {
@@ -17,22 +17,32 @@
         "count": {
             "type": "string",
             "default": "1",
-            "description": "runs tests count times"
+            "description": "runs tests count times (-count)"
         },
         "num-programs": {
             "type": "string",
             "default": "",
-            "description": "if set, the number of test programs that can be run in parallel"
+            "description": "if set, the number of test programs that can be run in parallel (-p)"
         },
         "race": {
             "type": "boolean",
             "default": true,
-            "description": "run tests with race detector enabled"
+            "description": "run tests with race detector enabled (-race)"
         },
         "verbose": {
             "type": "boolean",
             "default": true,
             "description": "run tests with -v"
+        },
+        "tags": {
+            "type": "string",
+            "default": "",
+            "description": "comma-separated list of additional build tags (-tags)"
+        },
+        "uncovered-packages": {
+            "type": "string",
+            "default": "",
+                "description": "space separated optional list of package patterns to exclude from coverage analysis"
         },
         "green": {
             "type": "string",

@@ -12,6 +12,8 @@ VERBOSE=${VERBOSE:-true}
 GREEN=${GREEN:-80}
 YELLOW=${YELLOW:-50}
 
+readarray -d, -t IGNORE_PKGS < <(printf '%s' "${UNCOVERED_PACKAGES}")
+
 echo "Activating feature 'gocoverbadge'..."
 
 mkdir -p /tmp/gotools
@@ -31,6 +33,7 @@ COUNT="${COUNT}"
 NUM_PROGRAMS="${NUM_PROGRAMS}"
 RACE="${RACE}"
 VERBOSE="${VERBOSE}"
+IGNORE_PKGS=("${IGNORE_PKGS[@]}")
 POSARGS=()
 while [[ \$# -gt 0 ]]; do
     case \$1 in
@@ -57,6 +60,14 @@ while [[ \$# -gt 0 ]]; do
     esac
 done
 
+# Are packages going to be excluded from the coverage analysis in order to not
+# skew the coverage results?
+if [[ -n \${#IGNORE_PKGS[@]} ]]; then
+    FILTER_PATTERN="\$(printf '^%s$|' "\${IGNORE_PKGS[@]}" | sed 's/|$//')"
+    COVERPKG_LIST=\$(go list ./... | grep -v -E "\${FILTER_PATTERN}" | tr '\n' ',' | sed 's/,$//')
+    COVERPKG="-coverpkg=\${COVERPKG_LIST}"
+fi
+
 # First, we set up a temporary directory to receive the coverage (binary)
 # files...
 GOCOVERTMPDIR="\$(mktemp -d)"
@@ -80,12 +91,14 @@ if [[ -n "\${ROOT+x}" ]]; then
         \${VERBOSE} \
         \${RACE} \
         -count=\${COUNT} \${NUM_PROGRAMS} \
+        \${COVERPKG} \
         \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
 fi
 go test -cover \
     \${VERBOSE} \
     \${RACE} \
     -count=\${COUNT} \${NUM_PROGRAMS} \
+    \${COVERPKG} \
     \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
 
 # Finally transform the coverage information collected in potentially multiple
