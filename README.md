@@ -12,3 +12,6 @@
   for updating outdated Go dependencies interactively.
 - [pin-github-action](src/pin-github-action/README.md) – provides mheaps's
   `pin-github-action` for pinning GitHub actions to specific hashes.
+- [wal-wahl](src/wal-wahl/README.md) – install multiple Docker CE versions
+  inside your devcontainer, quickly switching and activating one of them at a
+  time.
