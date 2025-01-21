@@ -1,0 +1,50 @@
+{
+    "id": "wal-wahl",
+    "version": "0.1.0",
+    "name": "install and switch between multiple Docker CE versions",
+    "description": "Install and switch between multiple Docker CE versions, activating one version at a time, and switching on-the-fly.",
+    "options": {
+        "versions": {
+            "type": "string",
+            "default": "26,27",
+            "description": "list of Docker Engine versions, separated by comma"
+        },
+        "azureDnsAutoDetection": {
+            "type": "boolean",
+            "default": false,
+            "description": "Allow automatically setting the dockerd DNS server when the installation script detects it is running in Azure"
+        },
+        "dockerDefaultAddressPool": {
+            "type": "string",
+            "default": "",
+            "proposals": [],
+            "description": "Define default address pools for Docker networks. e.g. base=192.168.0.0/16,size=24"
+        },
+        "disableIp6tables": {
+            "type": "boolean",
+            "default": false,
+            "description": "Disable ip6tables (this option is only applicable for Docker versions 27 and greater)"
+        }
+   },
+   "privileged": true,
+   "containerEnv": {
+       "DOCKER_BUILDKIT": "1"
+   },
+   "customizations": {
+       "vscode": {
+           "extensions": [
+               "ms-azuretools.vscode-docker"
+           ]
+       }
+   },
+   "mounts": [
+       {
+           "source": "dind-var-lib-docker-${devcontainerId}",
+           "target": "/var/lib/docker",
+           "type": "volume"
+       }
+   ],
+   "installsAfter": [
+       "ghcr.io/devcontainers/features/common-utils"
+   ]
+}

@@ -1,0 +1,10 @@
+{
+    "debian-back-to-henry-viii": {
+        "image": "mcr.microsoft.com/devcontainers/base:buster",
+        "features": {
+            "wal-wahl": {
+                "versions": "20,26"
+            }
+        }
+    }
+}
