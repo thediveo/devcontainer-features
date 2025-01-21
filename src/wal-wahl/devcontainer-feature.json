@@ -1,8 +1,8 @@
 {
     "id": "wal-wahl",
-    "version": "0.0.1",
-    "name": "switch between multiple Docker CE versions",
-    "description": "install and switch between multiple Docker CE versions",
+    "version": "0.1.0",
+    "name": "install and switch between multiple Docker CE versions",
+    "description": "Install and switch between multiple Docker CE versions, activating one version at a time, and switching on-the-fly.",
     "options": {
         "versions": {
             "type": "string",

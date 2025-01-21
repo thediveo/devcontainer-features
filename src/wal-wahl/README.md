@@ -1,3 +1,31 @@
+
+# install and switch between multiple Docker CE versions (wal-wahl)
+
+Install and switch between multiple Docker CE versions, activating one version at a time, and switching on-the-fly.
+
+## Example Usage
+
+```json
+"features": {
+    "ghcr.io/thediveo/devcontainer-features/wal-wahl:0": {}
+}
+```
+
+## Options
+
+| Options Id | Description | Type | Default Value |
+|-----|-----|-----|-----|
+| versions | list of Docker Engine versions, separated by comma | string | 26,27 |
+| azureDnsAutoDetection | Allow automatically setting the dockerd DNS server when the installation script detects it is running in Azure | boolean | false |
+| dockerDefaultAddressPool | Define default address pools for Docker networks. e.g. base=192.168.0.0/16,size=24 | string | - |
+| disableIp6tables | Disable ip6tables (this option is only applicable for Docker versions 27 and greater) | boolean | false |
+
+## Customizations
+
+### VS Code Extensions
+
+- `ms-azuretools.vscode-docker`
+
 ## Trivia
 
 "Wal-Wahl" is a German pun with homophons, meaning picking/voting for a whale.
@@ -86,3 +114,8 @@ with the `apt` package manager installed.
 ## Superfluous Notes
 
 - best viewed on a VT100 terminal with amber CRT.
+
+
+---
+
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/wal-wahl/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
