@@ -1,0 +1,30 @@
+{
+    "port-12345": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "local-pkgsite": {
+                "port": 12345
+            }
+        }
+    },
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features": {
+            "local-pkgsite": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "features": {
+            "local-pkgsite": {
+                "port": 6666
+            }
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "local-pkgsite": {}
+        }
+    }
+}
