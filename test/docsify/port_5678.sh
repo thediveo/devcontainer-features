@@ -6,7 +6,7 @@ source dev-container-features-test-lib
 CMD=$(cat <<EOF
 curl --output /dev/null \
     --retry-connrefused --retry-delay 1 --retry 3 \
-    --silent --head --fail \
+    --head --fail \
     http://localhost:5678
 EOF
 )

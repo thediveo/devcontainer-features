@@ -6,6 +6,17 @@
 
 set -e
 
+source dev-container-features-test-lib
+
+CMD=$(cat <<EOF
+curl --output /dev/null \
+    --retry-connrefused --retry-delay 1 --retry 3 \
+    --head --fail \
+    http://localhost:3300/
+EOF
+)
+check "serves at default port 3300" bash -c "${CMD}"
+
 echo "installing puppeteer..."
 sudo apt-get update
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrome-linux-keyring.gpg
@@ -13,17 +24,6 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-linux-keyring.g
 sudo apt-get update
 DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 dbus dbus-x11 --no-install-recommends
 npm install puppeteer --save
-
-source dev-container-features-test-lib
-
-CMD=$(cat <<EOF
-curl --output /dev/null \
-    --retry-connrefused --retry-delay 1 --retry 3 \
-    silent --head --fail \
-    http://localhost:3300
-EOF
-)
-check "serves at default port 3300" bash -c "${CMD}"
 
 SCRIPT=$(cat <<EOF
 import puppeteer from 'puppeteer';
