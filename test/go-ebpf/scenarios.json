@@ -1,0 +1,20 @@
+{
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features": {
+            "go-ebpf": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "features": {
+            "go-ebpf": {}
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "go-ebpf": {}
+        }
+    }
+}
