@@ -1,0 +1,26 @@
+{
+    "name": "Go ebpf development",
+    "id": "go-ebpf",
+    "version": "0.0.1",
+    "description": "Installs clang and llvm, and on top Cilium's bpf2go.",
+    "options": {
+        "bfp2go-version": {
+            "type": "string",
+            "default": "latest",
+            "description": "version of bpf2go to install"
+        }
+    },
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "latest",
+            "golangciLintVersion": "latest"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack"
+            ]
+        }
+    }
+}

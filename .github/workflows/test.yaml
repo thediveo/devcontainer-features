@@ -15,6 +15,7 @@ jobs:
       matrix:
         features:
           - docsify
+          - go-ebpf
           - go-mod-upgrade
           - gocover
           - goreportcard
