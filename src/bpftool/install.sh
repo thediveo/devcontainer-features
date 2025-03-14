@@ -147,6 +147,7 @@ curl -sSL -o /tmp/bpftool.tar.gz "https://github.com/libbpf/bpftool/releases/dow
 ls -l /tmp/bpftool.tar.gz
 tar xzof /tmp/bpftool.tar.gz -C /usr/local/bin/ bpftool
 chmod 0755 /usr/local/bin/bpftool
+rm /tmp/bpftool.tar.gz
 
 clean_up
 
