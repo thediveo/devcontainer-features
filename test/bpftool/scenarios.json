@@ -1,0 +1,28 @@
+{
+    "v7.4.0": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "bpftool": {
+                "version": "v7.4.0"
+            }
+        }
+    },
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features": {
+            "bpftool": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "features": {
+            "bpftool": {}
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "bpftool": {}
+        }
+    }
+}
