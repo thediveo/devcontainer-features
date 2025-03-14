@@ -14,10 +14,11 @@ jobs:
     strategy:
       matrix:
         features:
+          - bpftool
           - docsify
+          - gocover
           - go-ebpf
           - go-mod-upgrade
-          - gocover
           - goreportcard
           - local-pkgsite
           - pin-github-action
