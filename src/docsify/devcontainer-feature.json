@@ -1,8 +1,8 @@
 {
     "name": "docsify",
     "id": "docsify",
-    "version": "0.1.2",
-    "description": "Automatically serves ./docs workspace directory via 'docsify serve' in the background.",
+    "version": "0.1.3",
+    "description": "Automatically serves ./docs (or another) workspace directory via 'docsify serve' in the background.",
     "options": {
         "port": {
             "type": "string",
