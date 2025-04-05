@@ -18,7 +18,10 @@ cat <<EOF >"${DOCSIFY_SERVE_PATH}"
 
 # we need to explicitly "activate" (the current) node here, as otherwise
 # devcontainers using our feature and also setting their remoteEnv PATH will
-# cause our script to fail when run as the postStartCommand. 
+# cause our script to fail when run as the postStartCommand. Moreover, as this
+# script will be run in a non-login shell using a plain "docker exec -it ...",
+# we thus don't have the profile settings ready.
+
 . /usr/local/share/nvm/nvm.sh
 nvm use node
 
@@ -34,13 +37,33 @@ fi
 # a bad idea: when postStartCommand finishes, it tears down the nohup.
 # Thus, use setsid(1) (https://man7.org/linux/man-pages/man1/setsid.1.html)
 # to run the docsify serve node process in a new session.
+echo "starting \"docsify serve\" in the background..."
+LOGFILE=/tmp/nohup-feature-docsify.log
 setsid --fork bash -c "\
     docsify serve \
         -p=${PORT} \
         -P=${LIVERELOAD_PORT} \
         --no-open \
         ${DOCS_PATH} \
-    >/tmp/nohup-docsify.log 2>&1"
+    >\${LOGFILE} 2>&1"
+# wait for the background'ed bash running "docsify serve ..." to have created
+# the log file, as at this point we're sure this bash process has been
+# disassociated from the current session and will now not be affected any longer
+# when we exit.
+now=\$(date +%s)
+end=\$((now + 5))
+while true; do
+    if [ -s "\${LOGFILE}" ]; then
+        echo "...docsify started"
+        break
+    fi
+    now=\$(date +%s)
+    if [ "\${now}" -ge "\${end}" ]; then
+        echo "ERROR: docsify didn't start"
+        break
+    fi
+    sleep 0.25
+done
 EOF
 
 chmod 0755 "${DOCSIFY_SERVE_PATH}"
