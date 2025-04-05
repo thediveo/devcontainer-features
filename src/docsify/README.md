@@ -1,7 +1,7 @@
 
 # docsify (docsify)
 
-Automatically serves ./docs workspace directory via 'docsify serve' in the background.
+Automatically serves ./docs (or another) workspace directory via 'docsify serve' in the background.
 
 ## Example Usage
 
