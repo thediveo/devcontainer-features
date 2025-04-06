@@ -154,10 +154,30 @@ INT_PORT=$(comm -23 <(seq $(cat /proc/sys/net/ipv4/ip_local_port_range | tr ' ' 
     <(netstat -ntl | awk '/LISTEN/ {split($4,a,":"); print a[2]}' | sort -u) 2>/dev/null \
     | shuf | head -n 1)
 
+wait_for_process_logfile() {
+    local name=\$1
+    local file=\$2
+    local now=\$(date +%s)
+    local end=\$((now + 5))
+    while true; do
+        if [ -s "\${file}" ]; then
+            echo "...\${name} started"
+            break
+        fi
+        now=\$(date +%s)
+        if [ "\${now}" -ge "\${end}" ]; then
+            echo "ERROR: \${name} did not start"
+            break
+        fi
+        sleep 0.25
+    done
+}
+
 # Start browser-sync in the background to proxy from the local pkgsite on a
 # random/ephemeral HTTP port that the determined above to the "public" port
 # where browser want to connect to.
-nohup bash -c "\
+BROWSYNC_LOGFILE=/tmp/nohup-local-pkgsite-browser-sync.log
+setsid --fork bash -c "\
     browser-sync start \
         --port ${PORT} \
         --proxy localhost:\${INT_PORT} \
@@ -165,14 +185,16 @@ nohup bash -c "\
         --reload-debounce ${RELOAD_DEBOUNCE} \
         --no-ui \
         --no-open \
-    " >/tmp/nohup-local-pkgsite-browser-sync.log 2>&1 &
+    >\${BROWSYNC_LOGFILE} 2>&1"
+wait_for_process_logfile "browser-sync" \${BROWSYNC_LOGFILE}
 
 # Monitor for any *.go or (heaven forbid) our go.mod to change, then first
 # terminate the already running local pkgsite and restart it; as before, serve
 # the local pkgsite on a random/ephemeral HTTP port that the determined above.
 # Then trigger a reload in connected browsers. Please note that we run nodemon
-# and it will then run "browser-sync reload" on demand, as well as ).
-nohup bash -c "\
+# and it will then run "browser-sync reload" on demand, as well as pkgsite).
+NODEM_LOGFILE=/tmp/nohup-local-pkgsite-nodemon.log
+setsid --fork bash -c "\
     nodemon \
         --signal SIGTERM \
         --watch './**/*' \
@@ -182,7 +204,8 @@ nohup bash -c "\
             browser-sync --port ${PORT} reload \
             && ${PKGSITE_BIN} -http=localhost:\${INT_PORT} .
             \" \
-    &" >/tmp/nohup-local-pkgsite-nodemon.log 2>&1
+    >\${NODEM_LOGFILE} 2>&1"
+wait_for_process_logfile "nodemon" \${NODEM_LOGFILE}
 EOF
 chmod 0755 "${PKGSITE_SERVE_PATH}"
 
