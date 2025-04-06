@@ -11,7 +11,8 @@
         "image": "ghcr.io/almalinux/almalinux:9",
         "features": {
             "local-pkgsite": {}
-        }
+        },
+        "postCreateCommand": "yum install -y procps"
     },
     "debian": {
         "image": "mcr.microsoft.com/devcontainers/base:debian-12",
@@ -25,6 +26,7 @@
         "image": "fedora",
         "features": {
             "local-pkgsite": {}
-        }
+        },
+        "postCreateCommand": "yum install -y procps"
     }
-}
+}   
