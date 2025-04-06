@@ -1,7 +1,7 @@
 {
     "name": "Local Go Pkgsite",
     "id": "local-pkgsite",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "A local Go pkgsite serving the module documentation, with automatic browser refresh.",
     "options": {
         "port": {
