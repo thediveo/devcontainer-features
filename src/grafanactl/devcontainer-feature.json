@@ -1,0 +1,13 @@
+{
+    "name": "grafanactl",
+    "id": "grafanactl",
+    "version": "0.0.1",
+    "description": "Installs grafanactl from upstream https://github.com/grafana/grafanactl binary releases.",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "version of grafanactl to install from upstream"
+        }
+    }
+}

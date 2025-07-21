@@ -18,6 +18,9 @@ Alpine](https://github.com/devcontainers/features/blob/091886b3568dad70f835cc428
   directory via `docsify serve` in the background (with the specific workspace
   location being configurable).
 
+- [grafanactl](src/grafanactl/README.md) – installs `grafanactl` directly from
+  upstream https://github.com/grafana/grafanactl binary releases.
+
 - [gocover](src/gocover/README.md) – provides a `gocover` command to run
   conveniently unit tests and update a README.md coverage badge, supporting a
   set of presets. This even supports running coverage both as the container

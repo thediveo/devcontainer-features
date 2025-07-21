@@ -16,6 +16,7 @@ jobs:
         features:
           - bpftool
           - docsify
+          - grafanactl
           - gocover
           - go-ebpf
           - go-mod-upgrade
