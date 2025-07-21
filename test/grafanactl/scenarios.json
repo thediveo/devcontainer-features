@@ -1,0 +1,28 @@
+{
+    "v0.0.5": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "grafanactl": {
+                "version": "v0.0.5"
+            }
+        }
+    },
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features": {
+            "grafanactl": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "features": {
+            "grafanactl": {}
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "grafanactl": {}
+        }
+    }
+}
