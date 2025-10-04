@@ -14,6 +14,9 @@ Alpine](https://github.com/devcontainers/features/blob/091886b3568dad70f835cc428
   https://github.com/libbpf/bpftool binary releases, especially avoiding the
   usual pain of upstream Debian/Ubuntu kernel-specific bpftool packages.
 
+- [cni-plugins](src/cni-plugins/README.md) – installs CNI plugins directly from
+  upstream https://github.com/containernetworking/plugins binary releases.
+
 - [docsify](src/docsify/README.md) – automatically serves ./docs workspace
   directory via `docsify serve` in the background (with the specific workspace
   location being configurable).
@@ -39,6 +42,9 @@ Alpine](https://github.com/devcontainers/features/blob/091886b3568dad70f835cc428
 
 - [local-pkgsite](src/local-pkgsite/README.md) – a local Go pkgsite serving the
   module documentation, with automatic project reload and browser refresh. 
+
+- [nerdctl](src/nerdctl/README.md) – installs `nerdctl` directly from upstream
+  https://github.com/containerd/nerdctl binary releases.
 
 - [pin-github-action](src/pin-github-action/README.md) – provides mheaps's
   `pin-github-action` for pinning GitHub actions to specific hashes.

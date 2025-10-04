@@ -1,0 +1,18 @@
+{
+    "name": "CNI Plugins",
+    "id": "cni-plugins",
+    "version": "0.0.1",
+    "description": "Installs CNI plugins from upstream.",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "version of cni-plugins to install"
+        },
+        "plugins-path": {
+            "type": "string",
+            "default": "/usr/lib/cni",
+            "description": "path to install the CNI plugins into"
+        }
+    }
+}
