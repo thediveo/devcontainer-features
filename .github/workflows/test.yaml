@@ -23,6 +23,7 @@ jobs:
           - go-mod-upgrade
           - goreportcard
           - local-pkgsite
+          - nerdctl
           - pin-github-action
           - wal-wahl
         baseImage:
