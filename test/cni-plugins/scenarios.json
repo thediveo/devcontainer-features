@@ -1,0 +1,28 @@
+{
+    "other-location": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "cni-plugins": {
+                "plugin-path": "/opt/cni/bin"
+            }
+        }
+    },
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features": {
+            "cni-plugins": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "features": {
+            "cni-plugins": {}
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "cni-plugins": {}
+        }
+    }
+}
