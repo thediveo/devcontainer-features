@@ -3,7 +3,7 @@
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
         "features": {
             "cni-plugins": {
-                "plugin-path": "/opt/cni/bin"
+                "plugins-path": "/opt/cni/bin"
             }
         }
     },
