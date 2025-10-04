@@ -1,0 +1,26 @@
+{
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features": {
+            "nerdctl": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "features": {
+            "ghcr.io/devcontainers/features/docker-in-docker:2": {
+                "dockerDashComposeVersion": "none",
+                "installDockerBuildx": false
+            },
+            "nerdctl": {
+                "containerd-api": "unix:///run/docker/containerd/containerd.sock"
+            }
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "nerdctl": {}
+        }
+    }
+}
