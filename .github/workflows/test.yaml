@@ -15,7 +15,7 @@ jobs:
       matrix:
         features:
           - bpftool
-          - cni-plguins
+          - cni-plugins
           - docsify
           - grafanactl
           - gocover
