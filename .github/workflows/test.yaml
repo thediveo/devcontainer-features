@@ -22,6 +22,7 @@ jobs:
           - go-ebpf
           - go-mod-upgrade
           - goreportcard
+          - lazygit
           - local-pkgsite
           - nerdctl
           - pin-github-action

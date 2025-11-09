@@ -24,6 +24,7 @@ doesn't support Alpine.
 | grafanactl        |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
 | lazygit           |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
 | local-pkgsite     |        |  ✅  |  ✅    |  ✅    | ✅     |
+| nerdctl           |        |  ✅  |  ✅    |  ✅    | ✅     |
 | pin-github-action |        |  ✅  |  ✅    |  ✅    | ✅     |
 | wal-wahl          |        |  ✅  |  ✅    |  ✅    | ✅     |
 
