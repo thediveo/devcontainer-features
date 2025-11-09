@@ -1,13 +1,13 @@
 
-# bpftool (bpftool)
+# lazygit (lazygit)
 
-Installs bpftool from upstream https://github.com/libbpf/bpftool binary releases.
+Installs lazygit from upstream https://github.com/jesseduffield/lazygit binary releases.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/bpftool:0": {}
+    "ghcr.io/thediveo/devcontainer-features/lazygit:0": {}
 }
 ```
 
@@ -15,7 +15,7 @@ Installs bpftool from upstream https://github.com/libbpf/bpftool binary releases
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | version of bpftool to install from upstream | string | latest |
+| version | version of lazygit to install from upstream | string | latest |
 
 ## OS Support
 
@@ -33,4 +33,4 @@ Tested with:
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/bpftool/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/lazygit/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._

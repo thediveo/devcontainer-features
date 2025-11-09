@@ -13,6 +13,12 @@
             "bpftool": {}
         }
     },
+    "alpine": {
+        "image": "mcr.microsoft.com/devcontainers/base:alpine",
+        "features": {
+            "bpftool": {}
+        }
+    },
     "debian": {
         "image": "mcr.microsoft.com/devcontainers/base:debian-12",
         "features": {

@@ -3,6 +3,6 @@ set -e
 
 source dev-container-features-test-lib
 
-check "bpftool" bash -c "bpftool 2>&1 | grep 'Usage: bpftool \[OPTIONS\]'"
+check "lazygit" bash -c "lazygit --version | grep 'version=0.55.1,'"
 
 reportResults

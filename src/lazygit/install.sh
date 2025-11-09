@@ -10,13 +10,13 @@
 
 set -e
 
-BPFTOOL_VERSION="${VERSION:-"latest"}"
+LAZYGIT_VERSION="${VERSION:-"latest"}"
 
-REPOSLUG="libbpf/bpftool"
+REPOSLUG="jesseduffield/lazygit"
 QUERYLATEST_URL="https://api.github.com/repos/${REPOSLUG}/releases/latest"
 RELEASE_URL="https://github.com/${REPOSLUG}/releases/download/"
 
-echo "installing feature bpftool..."
+echo "installing feature lazygit..."
 
 if [ "$(id -u)" -ne 0 ]; then
     echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
@@ -145,7 +145,7 @@ check_packages() {
 }
 
 case $(uname -m) in
-    x86_64) ARCH="amd64";;
+    x86_64) ARCH="x86_64";;
     aarch64 | armv8*) ARCH="arm64";;
     *) echo "Unsupported architecture: $(uname -m)"; exit 1;;
 esac
@@ -156,22 +156,21 @@ if ! type curl > /dev/null 2>&1; then
     check_packages curl
 fi
 
-if [ "$BPFTOOL_VERSION" = "latest" ]; then
+if [ "$LAZYGIT_VERSION" = "latest" ]; then
     # get latest release    
-    BPFTOOL_VERSION=$(curl -s ${QUERYLATEST_URL} | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    LAZYGIT_VERSION=$(curl -s ${QUERYLATEST_URL} | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 fi
 
-echo "installing bpftool version: ${BPFTOOL_VERSION}"
+echo "installing lazygit version: ${LAZYGIT_VERSION}"
 echo "for architecture ${ARCH}"
 
-URL="${RELEASE_URL}${BPFTOOL_VERSION}/bpftool-${BPFTOOL_VERSION}-${ARCH}.tar.gz"
+URL="${RELEASE_URL}${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION#v}_linux_${ARCH}.tar.gz"
 echo "from: ${URL}"
 
-curl -sSL -o /tmp/bpftool.tar.gz "${URL}"
-ls -l /tmp/bpftool.tar.gz
-tar xzof /tmp/bpftool.tar.gz -C /usr/local/bin/ bpftool
-chmod 0755 /usr/local/bin/bpftool
-rm /tmp/bpftool.tar.gz
+curl -sSL -o /tmp/lazygit.tar.gz "${URL}"
+ls -l /tmp/lazygit.tar.gz
+tar xzof /tmp/lazygit.tar.gz -C /usr/local/bin/ lazygit
+rm /tmp/lazygit.tar.gz
 
 clean_up
 

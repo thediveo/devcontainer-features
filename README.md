@@ -9,6 +9,24 @@ unfortunately only to the limitation of different distribution support in Dev
 Containers features we rely on. In case of Go tools, this unfortunately leaves
 out Alpine, because [Microsoft's Go Dev Container feature does not support
 Alpine](https://github.com/devcontainers/features/blob/091886b3568dad70f835cc428dad1fdf7bc6a9b3/src/go/install.sh#L32-L44).
+Same unfortunate situation Microsoft's node Dev Container feature that also
+doesn't support Alpine.
+
+| Feature           | Alpine | Alma | Debian | Fedora | Ubuntu |
+| ----------------- | ------ | ---- | ------ | ------ | ------ |
+| bpftool           |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
+| cni-plugins       |        |  ✅  |  ✅    |  ✅    | ✅     |
+| docsify           |        |  ✅  |  ✅    |  ✅    | ✅     |
+| go-ebpf           |        |  ✅  |  ✅    |  ✅    | ✅     |
+| go-mod-upgrade    |        |  ✅  |  ✅    |  ✅    | ✅     |
+| gocover           |        |  ✅  |  ✅    |  ✅    | ✅     |
+| goreportcard      |        |  ✅  |  ✅    |  ✅    | ✅     |
+| grafanactl        |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
+| lazygit           |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
+| local-pkgsite     |        |  ✅  |  ✅    |  ✅    | ✅     |
+| nerdctl           |        |  ✅  |  ✅    |  ✅    | ✅     |
+| pin-github-action |        |  ✅  |  ✅    |  ✅    | ✅     |
+| wal-wahl          |        |  ✅  |  ✅    |  ✅    | ✅     |
 
 - [bpftool](src/bpftool/README.md) – installs `bpftool` directly from upstream
   https://github.com/libbpf/bpftool binary releases, especially avoiding the
@@ -39,6 +57,9 @@ Alpine](https://github.com/devcontainers/features/blob/091886b3568dad70f835cc428
 - [goreportcard](src/goreportcard/README.md) – provides `goreportcard-cli`that
   creates a Go report and a `README.md` badge on the code quality of a
   repository.
+
+- [lazygit](src/lazygit/README.md) – installs `lazygit` directly from upstream
+  https://github.com/jesseduffield/lazygit binary releases.
 
 - [local-pkgsite](src/local-pkgsite/README.md) – a local Go pkgsite serving the
   module documentation, with automatic project reload and browser refresh. 
