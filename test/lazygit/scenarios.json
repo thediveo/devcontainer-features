@@ -1,0 +1,34 @@
+{
+    "v0.55.1": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "lazygit": {
+                "version": "v0.55.1"
+            }
+        }
+    },
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features": {
+            "lazygit": {}
+        }
+    },
+    "alpine": {
+        "image": "mcr.microsoft.com/devcontainers/base:alpine",
+        "features": {
+            "lazygit": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "features": {
+            "lazygit": {}
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "lazygit": {}
+        }
+    }
+}
