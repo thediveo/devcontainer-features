@@ -12,6 +12,10 @@ set -e
 
 GRAFANACTL_VERSION="${VERSION:-"latest"}"
 
+REPOSLUG="grafana/grafanactl"
+QUERYLATEST_URL="https://api.github.com/repos/${REPOSLUG}/releases/latest"
+RELEASE_URL="https://github.com/${REPOSLUG}/releases/download/"
+
 echo "installing feature grafanactl..."
 
 if [ "$(id -u)" -ne 0 ]; then
@@ -25,6 +29,8 @@ fi
 MAJOR_VERSION_ID=$(echo ${VERSION_ID} | cut -d . -f 1)
 if [ "${ID}" = "debian" ] || [ "${ID_LIKE}" = "debian" ]; then
     ADJUSTED_ID="debian"
+elif [ "${ID}" = "alpine" ]; then
+    ADJUSTED_ID="alpine"
 elif [[ "${ID}" = "rhel" || "${ID}" = "fedora" || "${ID}" = "mariner" || "${ID_LIKE}" = *"rhel"* || "${ID_LIKE}" = *"fedora"* || "${ID_LIKE}" = *"mariner"* ]]; then
     ADJUSTED_ID="rhel"
     if [[ "${ID}" = "rhel" ]] || [[ "${ID}" = *"alma"* ]] || [[ "${ID}" = *"rocky"* ]]; then
@@ -49,6 +55,9 @@ fi
 if type apt-get > /dev/null 2>&1; then
     PKG_MGR_CMD=apt-get
     INSTALL_CMD="${PKG_MGR_CMD} -y install --no-install-recommends"
+elif type apk > /dev/null 2>&1; then
+    PKG_MGR_CMD=apk
+    INSTALL_CMD="${PKG_MGR_CMD} add --no-interactive"
 elif type microdnf > /dev/null 2>&1; then
     PKG_MGR_CMD=microdnf
     INSTALL_CMD="${PKG_MGR_CMD} ${INSTALL_CMD_ADDL_REPOS} -y install --refresh --best --nodocs --noplugins --setopt=install_weak_deps=0"
@@ -63,6 +72,9 @@ fi
 # Clean up
 clean_up() {
     case ${ADJUSTED_ID} in
+        alpine)
+            rm -rf /var/cache/apk/*
+            ;;
         debian)
             rm -rf /var/lib/apt/lists/*
             ;;
@@ -77,6 +89,12 @@ clean_up
 
 pkg_mgr_update() {
     case $ADJUSTED_ID in
+        alpine)
+            if [ "$(find /var/cache/apk/* | wc -l)" = "0" ]; then
+                echo "Running apk update..."
+                ${PKG_MGR_CMD} update
+            fi
+            ;;
         debian)
             if [ "$(find /var/lib/apt/lists/* | wc -l)" = "0" ]; then
                 echo "Running apt-get update..."
@@ -108,6 +126,9 @@ pkg_mgr_update() {
 # Checks if packages are installed and installs them if not
 check_packages() {
     case ${ADJUSTED_ID} in
+        alpine)
+            ${INSTALL_CMD} "$@"
+            ;;
         debian)
             if ! dpkg -s "$@" > /dev/null 2>&1; then
                 pkg_mgr_update
@@ -137,15 +158,16 @@ fi
 
 if [ "$GRAFANACTL_VERSION" = "latest" ]; then
     # get latest release    
-    GRAFANACTL_VERSION=$(curl -s https://api.github.com/repos/grafana/grafanactl/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    GRAFANACTL_VERSION=$(curl -s ${QUERYLATEST_URL} | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 fi
 
-echo version: $GRAFANACTL_VERSION
-echo for arch: $ARCH
+echo "installing grafanactl version: ${GRAFANACTL_VERSION}"
+echo "for architecture: ${ARCH}"
 
-echo "https://github.com/grafana/grafanactl/releases/download/${GRAFANACTL_VERSION}/grafanactl_Linux_${ARCH}.tar.gz"
+URL="${RELEASE_URL}${GRAFANACTL_VERSION}/grafanactl_Linux_${ARCH}.tar.gz"
+echo "from: ${URL}"
 
-curl -sSL -o /tmp/grafanactl.tar.gz "https://github.com/grafana/grafanactl/releases/download/${GRAFANACTL_VERSION}/grafanactl_Linux_${ARCH}.tar.gz"
+curl -sSL -o /tmp/grafanactl.tar.gz "${URL}"
 ls -lH /tmp/grafanactl.tar.gz
 tar xzof /tmp/grafanactl.tar.gz -C /usr/local/bin/ grafanactl
 chmod 0755 /usr/local/bin/grafanactl

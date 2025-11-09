@@ -13,6 +13,12 @@
             "grafanactl": {}
         }
     },
+    "alpine": {
+        "image": "mcr.microsoft.com/devcontainers/base:alpine",
+        "features": {
+            "grafanactl": {}
+        }
+    },
     "debian": {
         "image": "mcr.microsoft.com/devcontainers/base:debian-12",
         "features": {
