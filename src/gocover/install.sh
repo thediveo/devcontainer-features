@@ -82,6 +82,7 @@ trap 'rm -rf -- "\${GOCOVERTMPDIR}"' EXIT
 [[ "\${ROOT}" = "true" ]] && ROOT="-exec=sudo" || unset ROOT
 [[ "\${RACE}" = "true" ]] && RACE="-race" || unset RACE
 [[ "\${VERBOSE}" = "true" ]] && VERBOSE="-v" || unset VERBOSE
+[[ -n "\${TAGS}" ]] && TAGS="-tags=\${TAGS}" || unset TAGS
 
 [[ \${#POSARGS[@]} -eq 0 ]] && POSARGS+="./..."
 
@@ -91,6 +92,7 @@ if [[ -n "\${ROOT+x}" ]]; then
         \${VERBOSE} \
         \${RACE} \
         -count=\${COUNT} \${NUM_PROGRAMS} \
+        \${TAGS} \
         \${COVERPKG} \
         \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
 fi
@@ -98,6 +100,7 @@ go test -cover \
     \${VERBOSE} \
     \${RACE} \
     -count=\${COUNT} \${NUM_PROGRAMS} \
+    \${TAGS} \
     \${COVERPKG} \
     \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
 

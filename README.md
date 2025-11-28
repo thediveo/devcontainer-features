@@ -16,7 +16,7 @@ doesn't support Alpine.
 | ----------------- | ------ | ---- | ------ | ------ | ------ |
 | bpftool           |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
 | cni-plugins       |        |  ✅  |  ✅    |  ✅    | ✅     |
-| docsify           |        |  ✅  |  ✅    |  ✅    | ✅     |
+| docsify           |        |  ?   |  ✅    |  ?     | ✅     |
 | go-ebpf           |        |  ✅  |  ✅    |  ✅    | ✅     |
 | go-mod-upgrade    |        |  ✅  |  ✅    |  ✅    | ✅     |
 | gocover           |        |  ✅  |  ✅    |  ✅    | ✅     |
