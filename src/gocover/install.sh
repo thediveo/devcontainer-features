@@ -32,6 +32,7 @@ HTML="${HTML}"
 COUNT="${COUNT}"
 NUM_PROGRAMS="${NUM_PROGRAMS}"
 RACE="${RACE}"
+TAGS="${TAGS}"
 VERBOSE="${VERBOSE}"
 IGNORE_PKGS=("${IGNORE_PKGS[@]}")
 POSARGS=()
@@ -52,6 +53,10 @@ while [[ \$# -gt 0 ]]; do
         -nohtml|--nohtml)
             HTML="false"
             shift
+            ;;
+        -tags|--tags)
+            TAGS="\$2"
+            shift 2
             ;;
         *)
             POSARGS+=("\$1")
