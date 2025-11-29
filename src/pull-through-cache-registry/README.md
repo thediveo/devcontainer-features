@@ -1,7 +1,7 @@
 
 # OCI registry pull-through cache to mirror rate-limited upstream registries, such as Docker Hub (pull-through-cache-registry)
 
-provides a devcontainer-local CNCF Distribution Registry configured as a pull-through cache for the local docker-in-docker
+Deploys a devcontainer-local CNCF Distribution Registry configured as a pull-through cache for the local docker-in-docker
 
 ## Example Usage
 
@@ -15,6 +15,7 @@ provides a devcontainer-local CNCF Distribution Registry configured as a pull-th
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
+| proxy-remote-url | URL of the upstream OCI registry | string | https://registry-1.docker.io |
 | port | port to bind the CNCF Distribution Registry service to | string | 5000 |
 | registry-name | the Docker container name to give the CNCF Distribution Registry | string | registry-cache |
 | wait | maximum wait time in seconds for Docker to become available when starting the CNCF Distribution Registry service | string | 30 |
