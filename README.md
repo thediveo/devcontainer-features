@@ -12,21 +12,22 @@ Alpine](https://github.com/devcontainers/features/blob/091886b3568dad70f835cc428
 Same unfortunate situation Microsoft's node Dev Container feature that also
 doesn't support Alpine.
 
-| Feature           | Alpine | Alma | Debian | Fedora | Ubuntu |
-| ----------------- | ------ | ---- | ------ | ------ | ------ |
-| bpftool           |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
-| cni-plugins       |        |  ✅  |  ✅    |  ✅    | ✅     |
-| docsify           |        |  ?   |  ✅    |  ?     | ✅     |
-| go-ebpf           |        |  ✅  |  ✅    |  ✅    | ✅     |
-| go-mod-upgrade    |        |  ✅  |  ✅    |  ✅    | ✅     |
-| gocover           |        |  ✅  |  ✅    |  ✅    | ✅     |
-| goreportcard      |        |  ✅  |  ✅    |  ✅    | ✅     |
-| grafanactl        |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
-| lazygit           |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
-| local-pkgsite     |        |  ✅  |  ✅    |  ✅    | ✅     |
-| nerdctl           |        |  ✅  |  ✅    |  ✅    | ✅     |
-| pin-github-action |        |  ✅  |  ✅    |  ✅    | ✅     |
-| wal-wahl          |        |  ✅  |  ✅    |  ✅    | ✅     |
+| Feature                     | Alpine | Alma | Debian | Fedora | Ubuntu |
+| --------------------------- | ------ | ---- | ------ | ------ | ------ |
+| bpftool                     |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
+| cni-plugins                 |        |  ✅  |  ✅    |  ✅    | ✅     |
+| docsify                     |        |  ?   |  ✅    |  ?     | ✅     |
+| go-ebpf                     |        |  ✅  |  ✅    |  ✅    | ✅     |
+| go-mod-upgrade              |        |  ✅  |  ✅    |  ✅    | ✅     |
+| gocover                     |        |  ✅  |  ✅    |  ✅    | ✅     |
+| goreportcard                |        |  ✅  |  ✅    |  ✅    | ✅     |
+| grafanactl                  |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
+| lazygit                     |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
+| local-pkgsite               |        |  ✅  |  ✅    |  ✅    | ✅     |
+| nerdctl                     |        |  ✅  |  ✅    |  ✅    | ✅     |
+| pin-github-action           |        |  ✅  |  ✅    |  ✅    | ✅     |
+| pull-through-cache-registry |        |      |  ✅    |        | ✅     |
+| wal-wahl                    |        |  ✅  |  ✅    |  ✅    | ✅     |
 
 - [bpftool](src/bpftool/README.md) – installs `bpftool` directly from upstream
   https://github.com/libbpf/bpftool binary releases, especially avoiding the
@@ -69,6 +70,10 @@ doesn't support Alpine.
 
 - [pin-github-action](src/pin-github-action/README.md) – provides mheaps's
   `pin-github-action` for pinning GitHub actions to specific hashes.
+
+- [pull-through-cache-registry](src/pull-through-cache-registry/README.md) –
+  provides a CNCF Distribution Registry acting as pull-through cache for your
+  Docker-in-Docker.
 
 - [wal-wahl](src/wal-wahl/README.md) – install multiple Docker CE versions
   inside your devcontainer, quickly switching and activating one of them at a

@@ -1,0 +1,34 @@
+{
+    "name": "OCI registry pull-through cache to mirror rate-limited upstream registries, such as Docker Hub",
+    "id": "pull-through-cache-registry",
+    "version": "0.0.1",
+    "description": "Deploys a devcontainer-local CNCF Distribution Registry configured as a pull-through cache for the local docker-in-docker",
+    "documentationURL": "https://github.com/thediveo/devcontainer-features/blob/master/src/registry-pull-through-cache/README.md",
+    "options": {
+        "proxy-remote-url": {
+            "type": "string",
+            "default": "https://registry-1.docker.io",
+            "description": "URL of the upstream OCI registry"
+        },
+        "port": {
+            "type": "string",
+            "default": "5000",
+            "description": "port to bind the CNCF Distribution Registry service to",
+            "proposals": ["5000", "9999"]
+        },
+        "registry-name": {
+            "type": "string",
+            "default": "registry-cache",
+            "description": "the Docker container name to give the CNCF Distribution Registry"
+        },
+        "wait": {
+            "type": "string",
+            "default": "30",
+            "description": "maximum wait time in seconds for Docker to become available when starting the CNCF Distribution Registry service"
+        }
+    },
+    "postCreateCommand": "/usr/local/bin/registry-pull-through-cache",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    }
+}
