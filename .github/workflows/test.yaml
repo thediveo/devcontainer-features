@@ -26,6 +26,7 @@ jobs:
           - local-pkgsite
           - nerdctl
           - pin-github-action
+          - pull-through-cache-registry
           - wal-wahl
         baseImage:
           - mcr.microsoft.com/devcontainers/base:ubuntu-24.04

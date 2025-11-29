@@ -1,0 +1,18 @@
+{
+    "9999": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "pull-through-cache-registry": {
+                "port": "9999"
+            }
+        }
+    },
+    "quay.io": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "features": {
+            "pull-through-cache-registry": {
+                "proxy-remote-url": "https://quay.io"
+            }
+        }
+    }
+}
