@@ -78,3 +78,6 @@ doesn't support Alpine.
 - [wal-wahl](src/wal-wahl/README.md) – install multiple Docker CE versions
   inside your devcontainer, quickly switching and activating one of them at a
   time.
+
+Finally, we're eating our own dog food and these devcontainer features are
+developed inside a devcontainer.
