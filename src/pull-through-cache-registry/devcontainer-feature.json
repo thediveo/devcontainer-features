@@ -1,7 +1,7 @@
 {
     "name": "OCI registry pull-through cache to mirror rate-limited upstream registries, such as Docker Hub",
     "id": "pull-through-cache-registry",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "description": "Deploys a devcontainer-local CNCF Distribution Registry configured as a pull-through cache for the local docker-in-docker",
     "documentationURL": "https://github.com/thediveo/devcontainer-features/blob/master/src/registry-pull-through-cache/README.md",
     "options": {
