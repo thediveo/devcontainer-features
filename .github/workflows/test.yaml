@@ -31,10 +31,10 @@ jobs:
         baseImage:
           - mcr.microsoft.com/devcontainers/base:ubuntu-24.04
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # pin@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # pin@v6
 
       - name: "install latest devcontainer CLI"
-        run: npm install -g @devcontainers/cli@0.72.0
+        run: npm install -g @devcontainers/cli@0.84.1
 
       - name: "generating tests for '${{ matrix.features }}' against '${{ matrix.baseImage }}'"
         run: devcontainer features test --skip-duplicated -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
