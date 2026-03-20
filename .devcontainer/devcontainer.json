@@ -15,7 +15,8 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "mads-hartmann.bash-ide-vscode"
+                "mads-hartmann.bash-ide-vscode",
+                "mhutchie.git-graph"
             ]
         }
     }
