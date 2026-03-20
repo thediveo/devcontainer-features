@@ -21,6 +21,18 @@ Deploys a devcontainer-local CNCF Distribution Registry configured as a pull-thr
 | registry-name | the Docker container name to give the CNCF Distribution Registry. | string | registry-cache |
 | wait | maximum wait time in seconds for Docker to become available when starting the CNCF Distribution Registry service. | string | 30 |
 
+## WHY?!
+
+If you are running hard into OCI registry pull throttling then this devcontainer
+feature very much is right for you: it spins up a pull-through OCI registry
+inside your devcontainer and additionally reconfigures the Docker demon inside
+the devcontainer to use this devcontainer-local registry as its pull-through
+proxy.
+
+In the best tradition of
+[dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) we use this
+feature to develop our features.
+
 ## OS Support
 
 As this feature relies on the [Docker-in-Docker

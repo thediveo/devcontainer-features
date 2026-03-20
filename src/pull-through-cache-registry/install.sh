@@ -51,6 +51,7 @@ EOF
 
 echo generating ${DOCKERDCONFIG_PATH} configuring registry-mirrors
 if [ ! -f "${DOCKERDCONFIG_PATH}" ]; then
+    mkdir -p "$(dirname "${DOCKERDCONFIG_PATH}")"
     echo '{}' > "${DOCKERDCONFIG_PATH}"
 fi
 jq --arg port "${PORT}" '.["registry-mirrors"] = [ "http://localhost:" + $port ]' "${DOCKERDCONFIG_PATH}" > "${DOCKERDCONFIG_PATH}.new"

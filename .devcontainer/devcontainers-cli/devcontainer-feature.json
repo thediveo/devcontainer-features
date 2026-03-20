@@ -1,0 +1,6 @@
+{
+    "name": "@devcontainers/cli",
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/node"
+    ]
+}
