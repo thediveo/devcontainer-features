@@ -8,4 +8,6 @@ source dev-container-features-test-lib
 # (whalewatchers: hold my beer...)
 check "nerdctl" bash -c "sudo nerdctl ps"
 
+check "CNI firewall plugin" bash -c "[ -x /usr/local/bin/cni/firewall ]"
+
 reportResults

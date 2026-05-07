@@ -3,9 +3,8 @@ set -e
 
 source dev-container-features-test-lib
 
-# as we're combining this test with docker-in-docker, containerd's socket isn't
-# in its default location and we explicitly specify it in this feature's options
-# (whalewatchers: hold my beer...)
 check "nerdctl" bash -c "nerdctl --version"
+
+check "no CNI plugins" bash -c "[ ! -x /usr/libexec/cni/firewall ]"
 
 reportResults

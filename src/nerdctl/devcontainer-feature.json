@@ -1,13 +1,23 @@
 {
-    "name": "containerd control CLI",
+    "name": "nerdctl containerd control CLI and CNI plugins",
     "id": "nerdctl",
-    "version": "0.0.1",
-    "description": "Installs nerdctl from upstream.",
+    "version": "0.1.0",
+    "description": "Installs nerdctl and CNI plugins from upstream.",
     "options": {
         "version": {
             "type": "string",
             "default": "latest",
-            "description": "version of cni-plugins to install"
+            "description": "version of nerdctl to install"
+        },
+        "cni": {
+            "type": "boolean",
+            "default": true,
+            "description": "additionally install CNI plugins from nerdctl-full"
+        },
+        "cni-path": {
+            "type": "string",
+            "default": "/usr/libexec/cni",
+            "description": "path to install CNI plugin binaries into"
         },
         "containerd-api": {
             "type": "string",

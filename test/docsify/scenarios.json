@@ -15,5 +15,11 @@
                 "docs-path": "foobar"
             }
         }
+    },
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:9",
+        "features":{
+            "docsify": {}
+        }
     }
 }
