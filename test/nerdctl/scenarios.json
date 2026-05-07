@@ -2,17 +2,21 @@
     "almalinux": {
         "image": "ghcr.io/almalinux/almalinux:9",
         "features": {
-            "nerdctl": {}
+            "nerdctl": {
+                "cni": false
+            }
         }
     },
     "debian": {
-        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "image": "mcr.microsoft.com/devcontainers/base:debian-13",
         "features": {
             "ghcr.io/devcontainers/features/docker-in-docker:2": {
+                "moby": false,
                 "dockerDashComposeVersion": "none",
                 "installDockerBuildx": false
             },
             "nerdctl": {
+                "cni-path": "/usr/local/bin/cni",
                 "containerd-api": "unix:///run/docker/containerd/containerd.sock"
             }
         }
@@ -20,7 +24,9 @@
     "fedora": {
         "image": "fedora",
         "features": {
-            "nerdctl": {}
+            "nerdctl": {
+                "cni": false
+            }
         }
     }
 }

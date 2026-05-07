@@ -1,7 +1,7 @@
 
-# containerd control CLI (nerdctl)
+# nerdctl containerd control CLI and CNI plugins (nerdctl)
 
-Installs nerdctl from upstream.
+Installs nerdctl and CNI plugins from upstream.
 
 ## Example Usage
 
@@ -15,7 +15,9 @@ Installs nerdctl from upstream.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | version of cni-plugins to install | string | latest |
+| version | version of nerdctl to install | string | latest |
+| cni | additionally install CNI plugins from nerdctl-full | boolean | true |
+| cni-path | path to install CNI plugin binaries into | string | /usr/libexec/cni |
 | containerd-api | path to containerd API endpoint | string | unix:///run/containerd/containerd.sock |
 
 ## Combining with `docker-in-docker` Feature

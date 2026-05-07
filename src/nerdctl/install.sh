@@ -11,6 +11,8 @@
 set -e
 
 NERDCTL_VERSION="${VERSION:-"latest"}"
+INSTALL_CNI="${CNI:-true}"
+CNI_PATH="${CNI_PATH:-/usr/libexec/cni}"
 CONTAINERD_API="${CONTAINERD_API:-"unix:///run/containerd/containerd.sock"}"
 
 REPOSLUG="containerd/nerdctl"
@@ -142,20 +144,42 @@ fi
 
 if [ "$NERDCTL_VERSION" = "latest" ]; then
     # get latest release    
-    NERDCTL_VERSION=$(curl -s ${QUERYLATEST_URL} | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    NERDCTL_VERSION=$(curl -s ${QUERYLATEST_URL} \
+        | grep '"tag_name":' \
+        | sed -E 's/.*"([^"]+)".*/\1/')
 fi
 
-echo version: $NERDCTL_VERSION
-echo for arch: $ARCH
+echo "version: ${NERDCTL_VERSION}"
+echo "for arch: ${ARCH}"
+echo "install CNI plugins: ${INSTALL_CNI}" 
 
-URL="${RELEASE_URL}${NERDCTL_VERSION}/nerdctl-${NERDCTL_VERSION#v}-linux-${ARCH}.tar.gz"
+VARIANT=""
+if [ "${INSTALL_CNI}" = "true" ]; then
+    VARIANT="-full"
+fi
+URL="${RELEASE_URL}${NERDCTL_VERSION}/nerdctl${VARIANT}-${NERDCTL_VERSION#v}-linux-${ARCH}.tar.gz"
 echo "${URL}"
 
-curl -sSL -o /tmp/nerdctl.tar.gz "${URL}"
+trap 'rm -f /tmp/nerdctl.tar.gz' EXIT
+curl -SL --progress-bar -o /tmp/nerdctl.tar.gz "${URL}"
 ls -lH /tmp/nerdctl.tar.gz
-tar xzof /tmp/nerdctl.tar.gz -C /usr/local/bin/ nerdctl
+
+echo "installing nerdctl binary..."
+mkdir -p /usr/local/bin
+if [ "${INSTALL_CNI}" = "true" ]; then
+    tar -xzf /tmp/nerdctl.tar.gz --strip-components=1 -C /usr/local/bin bin/nerdctl
+else
+    tar -xzf /tmp/nerdctl.tar.gz -C /usr/local/bin nerdctl
+fi
 chmod 0755 /usr/local/bin/nerdctl
-rm /tmp/nerdctl.tar.gz
+
+
+if [ "${INSTALL_CNI}" = "true" ]; then
+    echo "installing CNI binaries..."
+    mkdir -p "${CNI_PATH}"
+    tar -xzf /tmp/nerdctl.tar.gz --strip-components=2 -C "${CNI_PATH}" --wildcards 'libexec/cni/*'
+    find "${CNI_PATH}" -maxdepth 1 -type f -exec chmod 0755 {} \;
+fi
 
 mkdir -p /etc/nerdctl
 cat <<EOF >"/etc/nerdctl/nerdctl.toml"
