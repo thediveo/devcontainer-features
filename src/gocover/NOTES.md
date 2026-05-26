@@ -4,14 +4,6 @@ This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
 that you have full control over from where and how you bring in the go
 toolchain.
 
-## `gocover` Command
-
-This feature installs a new `gocover` command into `/usr/local/bin`.
-
-When run without any flags and arguments, `gocover` will run the unit tests
-using `go test` on all packages in the Go module in the workspace, and update
-the `README.md` file with a badge showing the coverage percentage.
-
 For example:
 
 ```json
@@ -22,6 +14,14 @@ For example:
     }
 }
 ```
+
+## `gocover` Command
+
+This feature installs a new `gocover` command into `/usr/local/bin`.
+
+When run without any flags and arguments, `gocover` will run the unit tests
+using `go test` on all packages in the Go module in the workspace, and update
+the `README.md` file with a badge showing the coverage percentage.
 
 ### `gocover` CLI Flags
 

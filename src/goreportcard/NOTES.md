@@ -1,3 +1,20 @@
+## Feature Dependency
+
+This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
+that you have full control over from where and how you bring in the go
+toolchain.
+
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/go:1": {},
+        "goreportcard:1": {}
+    }
+}
+```
+
 ## OS Support
 
 Tested only with

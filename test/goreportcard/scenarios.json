@@ -1,0 +1,9 @@
+{
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "goreportcard": {},
+            "ghcr.io/devcontainers/features/go:1": {}
+        }
+    }
+}

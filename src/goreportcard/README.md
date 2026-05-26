@@ -7,11 +7,28 @@ provides goreportcard-cli.
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/goreportcard:0": {}
+    "ghcr.io/thediveo/devcontainer-features/goreportcard:1": {}
 }
 ```
 
 
+
+## Feature Dependency
+
+This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
+that you have full control over from where and how you bring in the go
+toolchain.
+
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/go:1": {},
+        "goreportcard:1": {}
+    }
+}
+```
 
 ## OS Support
 
