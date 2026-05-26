@@ -5,7 +5,7 @@
 To test a particular devcontainer feature, say, `lazygit`:
 
 ```bash
-devcontainer features test -f lazygit -i mcr.microsoft.com/devcontainers/base:ubuntu-24.04 .
+devcontainer features test -f lazygit -i mcr.microsoft.com/devcontainers/base:ubuntu -p .
 ```
 
 - `--skip-scenarios` ... tests only the `test.sh` test case, but no scenario tests.
