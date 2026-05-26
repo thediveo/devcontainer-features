@@ -38,7 +38,9 @@ if docker ps -a --format '{{.Names}}' | grep -q "^\${REGISTRY_NAME}$"; then
     docker start "\${REGISTRY_NAME}"
 else
     echo "running pull-through cache registry container"
+    docker pull registry-1.docker.io/library/registry:3
     docker run -d \
+        --pull never \
         --restart always \
         --name "\${REGISTRY_NAME}" \
         -p \${PORT}:5000 \
@@ -47,7 +49,7 @@ else
         -e REGISTRY_HTTP_DEBUG= \
         -e REGISTRY_LOG_LEVEL=info \
         -e OTEL_TRACES_EXPORTER=none \
-        registry:3
+        registry-1.docker.io/library/registry:3
 fi
 echo "pull-through cache registry started"
 EOF
