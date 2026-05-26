@@ -1,8 +1,9 @@
 {
     "name": "Go Coverage with Badge",
     "id": "gocover",
-    "version": "0.1.4",
-    "description": "runs Go unit tests with coverages, updating the README.md with a coverage badge.",
+    "version": "1.0.0",
+    "description": "a gocover command to run Go unit tests with coverages, updating the README.md with a coverage badge.",
+    "keywords": ["go", "coverage", "badge"],
     "options": {
         "root": {
             "type": "boolean",
@@ -55,10 +56,7 @@
             "description": "percentage number for the badge to become yellow"
         }
     },
-    "dependsOn": {
-        "ghcr.io/devcontainers/features/go:1": {
-            "version": "latest",
-            "golangciLintVersion": "latest"
-        }
-    }
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/go"
+    ]
 }

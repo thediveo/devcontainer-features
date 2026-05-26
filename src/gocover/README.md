@@ -1,13 +1,13 @@
 
 # Go Coverage with Badge (gocover)
 
-runs Go unit tests with coverages, updating the README.md with a coverage badge.
+a gocover command to run Go unit tests with coverages, updating the README.md with a coverage badge.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/gocover:0": {}
+    "ghcr.io/thediveo/devcontainer-features/gocover:1": {}
 }
 ```
 
@@ -26,6 +26,12 @@ runs Go unit tests with coverages, updating the README.md with a coverage badge.
 | green | percentage number for the badge to become green | string | 80 |
 | yellow | percentage number for the badge to become yellow | string | 50 |
 
+## Feature Dependency
+
+This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
+that you have full control over from where and how you bring in the go
+toolchain.
+
 ## `gocover` Command
 
 This feature installs a new `gocover` command into `/usr/local/bin`.
@@ -34,14 +40,25 @@ When run without any flags and arguments, `gocover` will run the unit tests
 using `go test` on all packages in the Go module in the workspace, and update
 the `README.md` file with a badge showing the coverage percentage.
 
-### CLI Flags
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/go:1": {},
+        "gocover:1": {}
+    }
+}
+```
+
+### `gocover` CLI Flags
 
 | Flag | Meaning |
 | --- | --- |
 | `-r`, `-root`, `--root` | run tests additionally also as root. |
-| `-noroot`, `--no-root` | don't run tests also as root, even if feature was configured with root=true. |
+| `-noroot`, `--no-root` | don't run tests also as root, even if this feature was configured with `root`:`true`. |
 | `-html`, `--html` | additionally generate `coverage.html` |
-| `-nohtml`, `--no-html` | don't generate `coverage.html, even if feature was configured with html=true. |
+| `-nohtml`, `--no-html` | don't generate `coverage.html`, even if this feature was configured with `html`:`true`. |
 
 ### Positional Arguments
 
