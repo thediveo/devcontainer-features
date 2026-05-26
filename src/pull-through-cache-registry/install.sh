@@ -14,7 +14,10 @@ WAIT=${WAIT:-30}
 echo "installing feature registry-pull-through-cache"
 
 cat <<EOF >"${REGISTRYDEPLOYSCRIPT_PATH}"
-PROXY_REMOTE_URL=${PROXY_REMOTE_URL}
+#!/bin/bash
+set -eu
+
+PROXY_REMOTE_URL="${PROXY_REMOTE_URL}"
 PORT="${PORT}"
 TTL="${TTL}"
 REGISTRY_NAME="${REGISTRY_NAME}"
@@ -23,8 +26,8 @@ timeout=${WAIT}
 echo "waiting up to ${WAIT}s for Docker daemon to become responsive..."
 while ! docker ps >/dev/null 2>&1; do
     sleep 1
-    timeout=$((timeout-1))
-    if [ "$timeout" -le 0 ]; then
+    timeout=\$((timeout-1))
+    if [ "\$timeout" -le 0 ]; then
         echo "Docker did not become responsive, aborting"
         exit 1
     fi

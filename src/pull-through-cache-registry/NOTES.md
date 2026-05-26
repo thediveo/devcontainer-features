@@ -10,6 +10,12 @@ In the best tradition of
 [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) we use this
 feature to develop our features.
 
+## Important
+
+- this feature depends on `ghcr.io/devcontainers/features/docker-in-docker:3`.
+- at this time, it needs to set the docker-in-docker configuration parameter
+  `moby` to `false` in order to work on Debian 13 as well as Ubuntu 26.04.
+
 ## OS Support
 
 As this feature relies on the [Docker-in-Docker

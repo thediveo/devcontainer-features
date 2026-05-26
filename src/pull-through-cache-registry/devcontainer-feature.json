@@ -42,6 +42,8 @@
     ],
     "postCreateCommand": "/usr/local/bin/registry-pull-through-cache",
     "dependsOn": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+        "ghcr.io/devcontainers/features/docker-in-docker:3": {
+            "moby": false
+        }
     }
 }
