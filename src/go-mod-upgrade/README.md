@@ -7,11 +7,32 @@ upgrade outdated Go dependencies interactively.
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/go-mod-upgrade:0": {}
+    "ghcr.io/thediveo/devcontainer-features/go-mod-upgrade:1": {}
 }
 ```
 
+## Options
 
+| Options Id | Description | Type | Default Value |
+|-----|-----|-----|-----|
+| version | version of go-mod-upgrade to install | string | latest |
+
+## Feature Dependency
+
+This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
+that you have full control over from where and how you bring in the go
+toolchain.
+
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/go:1": {},
+        "ghcr.io/thediveo/devcontainer-features/go-mod-upgrade:1": {}
+    }
+}
+```
 
 ## OS Support
 

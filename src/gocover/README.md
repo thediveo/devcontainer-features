@@ -38,7 +38,7 @@ For example:
 {
     "features": {
         "ghcr.io/devcontainers/features/go:1": {},
-        "gocover:1": {}
+        "ghcr.io/thediveo/devcontainer-features/gocover:1": {}
     }
 }
 ```

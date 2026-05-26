@@ -1,0 +1,18 @@
+{
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "go-mod-upgrade": {},
+            "ghcr.io/devcontainers/features/go:1": {}
+        }
+    },
+    "v0.13.0-beta.0": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "go-mod-upgrade": {
+                "version": "v0.13.0-beta.0"
+            },
+            "ghcr.io/devcontainers/features/go:1": {}
+        }
+    }
+}

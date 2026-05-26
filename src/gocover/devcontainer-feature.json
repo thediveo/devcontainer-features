@@ -3,7 +3,11 @@
     "id": "gocover",
     "version": "1.0.0",
     "description": "a gocover command to run Go unit tests with coverages, updating the README.md with a coverage badge.",
-    "keywords": ["go", "coverage", "badge"],
+    "keywords": [
+        "go",
+        "coverage",
+        "badge"
+    ],
     "options": {
         "root": {
             "type": "boolean",
@@ -43,7 +47,7 @@
         "uncovered-packages": {
             "type": "string",
             "default": "",
-                "description": "space separated optional list of package patterns to exclude from coverage analysis"
+            "description": "space separated optional list of package patterns to exclude from coverage analysis"
         },
         "green": {
             "type": "string",

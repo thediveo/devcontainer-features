@@ -10,7 +10,7 @@ For example:
 {
     "features": {
         "ghcr.io/devcontainers/features/go:1": {},
-        "goreportcard:1": {}
+        "ghcr.io/thediveo/devcontainer-features/goreportcard:1": {}
     }
 }
 ```
