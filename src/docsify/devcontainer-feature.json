@@ -1,7 +1,7 @@
 {
     "name": "docsify",
     "id": "docsify",
-    "version": "0.1.3",
+    "version": "0.2.0",
     "description": "Automatically serves ./docs (or another) workspace directory via 'docsify serve' in the background.",
     "options": {
         "port": {
@@ -24,7 +24,7 @@
         }
     },
     "dependsOn": {
-        "ghcr.io/devcontainers/features/node:1": {
+        "ghcr.io/devcontainers/features/node:2": {
             "version": "lts"
         }
     },
