@@ -1,6 +1,12 @@
 {
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "cni-plugins": {}
+        }
+    },
     "other-location": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "cni-plugins": {
                 "plugins-path": "/opt/cni/bin"

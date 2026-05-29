@@ -1,6 +1,12 @@
 {
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "bpftool": { }
+        }
+    },
     "v7.4.0": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "bpftool": {
                 "version": "v7.4.0"
