@@ -1,19 +1,29 @@
 {
-    "almalinux": {
-        "image": "ghcr.io/almalinux/almalinux:9",
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
             "go-ebpf": {}
         }
     },
-    "debian": {
-        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:10",
         "features": {
+            "go-ebpf": {},
+            "ghcr.io/devcontainers/features/go:1": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-13",
+        "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
             "go-ebpf": {}
         }
     },
     "fedora": {
         "image": "fedora",
         "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
             "go-ebpf": {}
         }
     }
