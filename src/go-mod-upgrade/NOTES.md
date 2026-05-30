@@ -15,6 +15,12 @@ For example:
 }
 ```
 
+## `go-mod-upgrade` Command
+
+Please refer to the [upstream repository
+`@oligot/go-mod-upgrade`](https://github.com/oligot/go-mod-upgrade) for
+documentation.
+
 ## OS Support
 
 Tested only with
