@@ -1,22 +1,36 @@
 {
-    "port-12345": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
+            "ghcr.io/devcontainers/features/go:1": {},
+            "local-pkgsite": {}
+        }
+    },
+    "port-12345": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
+            "ghcr.io/devcontainers/features/go:1": {},
             "local-pkgsite": {
                 "port": 12345
             }
         }
     },
     "almalinux": {
-        "image": "ghcr.io/almalinux/almalinux:9",
+        "image": "ghcr.io/almalinux/almalinux:10",
         "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
+            "ghcr.io/devcontainers/features/go:1": {},
             "local-pkgsite": {}
         },
         "postCreateCommand": "yum install -y procps"
     },
     "debian": {
-        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "image": "mcr.microsoft.com/devcontainers/base:debian-13",
         "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
+            "ghcr.io/devcontainers/features/go:1": {},
             "local-pkgsite": {
                 "port": 6666
             }
@@ -25,8 +39,10 @@
     "fedora": {
         "image": "fedora",
         "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
+            "ghcr.io/devcontainers/features/go:1": {},
             "local-pkgsite": {}
         },
         "postCreateCommand": "yum install -y procps"
     }
-}   
+}
