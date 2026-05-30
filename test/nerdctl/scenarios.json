@@ -1,4 +1,10 @@
 {
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "nerdctl": {}
+        }
+    },
     "almalinux": {
         "image": "ghcr.io/almalinux/almalinux:9",
         "features": {
@@ -10,7 +16,7 @@
     "debian": {
         "image": "mcr.microsoft.com/devcontainers/base:debian-13",
         "features": {
-            "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "ghcr.io/devcontainers/features/docker-in-docker:3": {
                 "moby": false,
                 "dockerDashComposeVersion": "none",
                 "installDockerBuildx": false
