@@ -6,11 +6,12 @@ not already covered by the VSCode Go plugin.
 
 Where applicable, multiple different distribution base images are supported, but
 unfortunately only to the limitation of different distribution support in Dev
-Containers features we rely on. In case of Go tools, this unfortunately leaves
-out Alpine, because [Microsoft's Go Dev Container feature does not support
+Containers features we rely on. In case of **Go** tools, this unfortunately
+leaves out Alpine, because [Microsoft's Go Dev Container feature does not
+support
 Alpine](https://github.com/devcontainers/features/blob/091886b3568dad70f835cc428dad1fdf7bc6a9b3/src/go/install.sh#L32-L44).
-Same unfortunate situation Microsoft's node Dev Container feature that also
-doesn't support Alpine.
+The same unfortunate situation applies also to Microsoft's **node** Dev
+Container feature that also doesn't support Alpine.
 
 | Feature                     | Alpine | Alma | Debian | Fedora | Ubuntu |
 | --------------------------- | ------ | ---- | ------ | ------ | ------ |
@@ -25,6 +26,7 @@ doesn't support Alpine.
 | lazygit                     |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
 | local-pkgsite               |        |  ✅  |  ✅    |  ✅    | ✅     |
 | nerdctl                     |        |  ✅  |  ✅    |  ✅    | ✅     |
+| pinact                      |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
 | pin-github-action           |        |  ✅  |  ✅    |  ✅    | ✅     |
 | pull-through-cache-registry |        |      |  ✅    |        | ✅     |
 | wal-wahl                    |        |  ✅  |  ✅    |  ✅    | ✅     |

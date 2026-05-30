@@ -1,13 +1,13 @@
 
-# lazygit (lazygit)
+# pinact (pinact)
 
-Installs lazygit from upstream https://github.com/jesseduffield/lazygit binary releases.
+Installs pinact from upstream https://github.com/suzuki-shunsuke/pinact binary releases.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/lazygit:0": {}
+    "ghcr.io/thediveo/devcontainer-features/pinact:0": {}
 }
 ```
 
@@ -15,7 +15,7 @@ Installs lazygit from upstream https://github.com/jesseduffield/lazygit binary r
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | version of lazygit to install from upstream | string | latest |
+| version | version of pinact to install from upstream | string | latest |
 
 ## OS Support
 
@@ -29,4 +29,4 @@ Tested with:
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/lazygit/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/thediveo/devcontainer-features/blob/main/src/pinact/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
