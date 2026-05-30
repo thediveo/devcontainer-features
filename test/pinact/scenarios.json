@@ -1,0 +1,40 @@
+{
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "pinact": {}
+        }
+    },
+    "v3.10.1": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "pinact": {
+                "version": "v3.10.1"
+            }
+        }
+    },
+    "almalinux": {
+        "image": "ghcr.io/almalinux/almalinux:10",
+        "features": {
+            "pinact": {}
+        }
+    },
+    "alpine": {
+        "image": "mcr.microsoft.com/devcontainers/base:alpine",
+        "features": {
+            "pinact": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-13",
+        "features": {
+            "pinact": {}
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "pinact": {}
+        }
+    }
+}
