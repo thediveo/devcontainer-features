@@ -1,7 +1,19 @@
 {
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "ghcr.io/devcontainers/features/docker-in-docker:3": {
+                "moby": false
+            },
+            "pull-through-cache-registry": {}
+        }
+    },
     "9999": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/docker-in-docker:3": {
+                "moby": false
+            },
             "pull-through-cache-registry": {
                 "port": "9999"
             }
@@ -10,6 +22,9 @@
     "quay.io": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/docker-in-docker:3": {
+                "moby": false
+            },
             "pull-through-cache-registry": {
                 "proxy-remote-url": "https://quay.io"
             }
