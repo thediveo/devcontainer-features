@@ -1,12 +1,22 @@
 {
     "name": "go-mod-upgrade",
     "id": "go-mod-upgrade",
-    "version": "0.1.1",
+    "version": "1.0.0",
     "description": "upgrade outdated Go dependencies interactively.",
-    "dependsOn": {
-        "ghcr.io/devcontainers/features/go:1": {
-            "version": "latest",
-            "golangciLintVersion": "latest"
+    "keywords": [
+        "go",
+        "mod",
+        "modules",
+        "dependencies"
+    ],
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "version of go-mod-upgrade to install"
         }
-    }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/go"
+    ]
 }

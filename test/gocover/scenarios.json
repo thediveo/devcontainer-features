@@ -1,31 +1,42 @@
 {
-    "root": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "gocover": {},
+            "ghcr.io/devcontainers/features/go:1": {}
+        }
+    },
+    "root": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
             "gocover": {
                 "root": true
             }
         }
     },
     "html": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
             "gocover": {
                 "html": true
             }
         }
     },
     "nonverbose": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
             "gocover": {
                 "verbose": false
             }
         }
     },
     "yellow": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
             "gocover": {
                 "yellow": "60"
             }

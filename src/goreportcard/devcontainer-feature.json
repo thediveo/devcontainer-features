@@ -1,12 +1,14 @@
 {
     "name": "Go Report Card",
     "id": "goreportcard",
-    "version": "0.1.1",
+    "version": "1.0.0",
+    "keywords": [
+        "go",
+        "goreportcard",
+        "score card"
+    ],
     "description": "provides goreportcard-cli.",
-    "dependsOn": {
-        "ghcr.io/devcontainers/features/go:1": {
-            "version": "latest",
-            "golangciLintVersion": "latest"
-        }
-    }
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/go"
+    ]
 }

@@ -7,7 +7,7 @@ Deploys a devcontainer-local CNCF Distribution Registry configured as a pull-thr
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/pull-through-cache-registry:0": {}
+    "ghcr.io/thediveo/devcontainer-features/pull-through-cache-registry:1": {}
 }
 ```
 
@@ -32,6 +32,25 @@ proxy.
 In the best tradition of
 [dogfooding](https://en.wikipedia.org/wiki/Eating_your_own_dog_food) we use this
 feature to develop our features.
+
+
+## Feature Dependency
+
+This feature has only a soft dependecy on
+`ghcr.io/devcontainers/features/docker-in-docker` so that you have full control
+over from where and how you bring in Docker-in-Docker.
+
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:3": {
+            "moby": false
+        },
+    }
+}
+```
 
 ## OS Support
 

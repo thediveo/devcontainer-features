@@ -3,4 +3,4 @@ set -e
 
 PORT=12345
 
-. ./test.sh
+. ./default.sh

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-. ./test.sh
+PORT=6666
+
+. ./default.sh

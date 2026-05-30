@@ -1,7 +1,7 @@
 
 # bpftool (bpftool)
 
-Installs bpftool from upstream https://github.com/libbpf/bpftool binary releases.
+Installs bpftool binary from upstream https://github.com/libbpf/bpftool binary releases.
 
 ## Example Usage
 
@@ -15,7 +15,7 @@ Installs bpftool from upstream https://github.com/libbpf/bpftool binary releases
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | version of bpftool to install from upstream | string | latest |
+| version | version of bpftool binary to install from upstream | string | latest |
 
 ## OS Support
 

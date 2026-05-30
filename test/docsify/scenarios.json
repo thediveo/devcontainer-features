@@ -1,6 +1,12 @@
 {
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "docsify": {}
+        }
+    },
     "port_5678": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "docsify": {
                 "port": "5678",
@@ -9,7 +15,7 @@
         }
     },
     "docspath": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "docsify": {
                 "docs-path": "foobar"
@@ -17,7 +23,7 @@
         }
     },
     "almalinux": {
-        "image": "ghcr.io/almalinux/almalinux:9",
+        "image": "ghcr.io/almalinux/almalinux:10",
         "features":{
             "docsify": {}
         }

@@ -1,13 +1,13 @@
 {
     "name": "bpftool",
     "id": "bpftool",
-    "version": "0.0.3",
-    "description": "Installs bpftool from upstream https://github.com/libbpf/bpftool binary releases.",
+    "version": "0.0.4",
+    "description": "Installs bpftool binary from upstream https://github.com/libbpf/bpftool binary releases.",
     "options": {
         "version": {
             "type": "string",
             "default": "latest",
-            "description": "version of bpftool to install from upstream"
+            "description": "version of bpftool binary to install from upstream"
         }
     }
 }

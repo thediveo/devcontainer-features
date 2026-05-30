@@ -1,6 +1,12 @@
 {
+    "default": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "cni-plugins": {}
+        }
+    },
     "other-location": {
-        "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "cni-plugins": {
                 "plugins-path": "/opt/cni/bin"
@@ -8,13 +14,13 @@
         }
     },
     "almalinux": {
-        "image": "ghcr.io/almalinux/almalinux:9",
+        "image": "ghcr.io/almalinux/almalinux:10",
         "features": {
             "cni-plugins": {}
         }
     },
     "debian": {
-        "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+        "image": "mcr.microsoft.com/devcontainers/base:debian-13",
         "features": {
             "cni-plugins": {}
         }

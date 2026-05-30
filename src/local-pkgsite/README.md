@@ -7,7 +7,7 @@ A local Go pkgsite serving the module documentation, with automatic browser refr
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/local-pkgsite:0": {}
+    "ghcr.io/thediveo/devcontainer-features/local-pkgsite:1": {}
 }
 ```
 
@@ -19,6 +19,27 @@ A local Go pkgsite serving the module documentation, with automatic browser refr
 | reload-delay | time in milliseconds to delay the reload event following file changes | string | 2000 |
 | reload-debounce | time in milliseconds to restrict the frequency in which browser:reload events can be emitted to connected clients | string | 5000 |
 
+## Feature Dependency
+
+This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
+that you have full control over from where and how you bring in the go
+toolchain.
+
+Similar, it has a soft dependency on `ghcr.io/devcontainers/features/node` –
+depending on you base image you already have a suitable node, otherwise you
+might want to use the aforementioned node feature.
+
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/go:1": {},
+        "ghcr.io/devcontainers/features/node:2": {}, // optional
+        "ghcr.io/thediveo/devcontainer-features/local-pkgsite:1": {}
+    }
+}
+```
 ## OS Support
 
 Tested with:

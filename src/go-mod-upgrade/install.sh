@@ -3,9 +3,11 @@ set -e
 
 echo "Activating feature 'go-mod-upgrade'..."
 
+VERSION="${VERSION:-"latest"}"
+
 mkdir -p /tmp/gotools
 export GOCACHE=/tmp/gotools/cache
 
-go install github.com/oligot/go-mod-upgrade@latest
+go install "github.com/oligot/go-mod-upgrade@${VERSION}"
 
 rm -rf /tmp/gotools
