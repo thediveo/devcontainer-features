@@ -7,7 +7,7 @@ Installs clang and llvm, and on top Cilium's bpf2go.
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/go-ebpf:0": {}
+    "ghcr.io/thediveo/devcontainer-features/go-ebpf:1": {}
 }
 ```
 
@@ -22,6 +22,23 @@ Installs clang and llvm, and on top Cilium's bpf2go.
 ### VS Code Extensions
 
 - `ms-vscode.cpptools-extension-pack`
+
+## Feature Dependency
+
+This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
+that you have full control over from where and how you bring in the go
+toolchain.
+
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/go:1": {},
+        "ghcr.io/thediveo/devcontainer-features/go-ebpf:1": {}
+    }
+}
+```
 
 ## PID Namespace
 

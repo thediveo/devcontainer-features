@@ -32,7 +32,7 @@ feature, you need to explicitly configure the non-standard API endpoint URL for
 
 ```json
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:3": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "dockerDashComposeVersion": "none",
             "installDockerBuildx": false
         },
