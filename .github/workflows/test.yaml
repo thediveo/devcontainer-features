@@ -17,6 +17,7 @@ jobs:
           - bpftool
           - cni-plugins
           - docsify
+          - gcx
           - go-ebpf
           - go-mod-upgrade
           - gocover
