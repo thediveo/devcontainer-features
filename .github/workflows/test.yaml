@@ -17,6 +17,7 @@ jobs:
           - bpftool
           - cni-plugins
           - docsify
+          - gcx
           - go-ebpf
           - go-mod-upgrade
           - gocover
@@ -31,7 +32,7 @@ jobs:
         baseImage:
           - mcr.microsoft.com/devcontainers/base:ubuntu
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # pin@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: "install latest devcontainer CLI"
         run: npm install -g @devcontainers/cli@0.84.1

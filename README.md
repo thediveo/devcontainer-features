@@ -18,6 +18,7 @@ Container feature that also doesn't support Alpine.
 | bpftool                     |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
 | cni-plugins                 |        |  ✅  |  ✅    |  ✅    | ✅     |
 | docsify                     |        |  ✅  |  ✅    |  ✅    | ✅     |
+| gcx                         |  ✅    |  ✅  |  ✅    |  ✅    | ✅     |
 | go-ebpf                     |        |  ✅  |  ✅    |  ✅    | ✅     |
 | go-mod-upgrade              |        |  ✅  |  ✅    |  ✅    | ✅     |
 | gocover                     |        |  ✅  |  ✅    |  ✅    | ✅     |
@@ -41,6 +42,9 @@ Container feature that also doesn't support Alpine.
 - [docsify](src/docsify/README.md) – automatically serves ./docs workspace
   directory via `docsify serve` in the background (with the specific workspace
   location being configurable).
+
+- [gcx](src/gcx/README.md) – installs `gcx` directly from upstream
+  https://github.com/grafana/gcx binary releases.
 
 - [grafanactl](src/grafanactl/README.md) – installs `grafanactl` directly from
   upstream https://github.com/grafana/grafanactl binary releases.
