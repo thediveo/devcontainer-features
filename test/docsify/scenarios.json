@@ -2,21 +2,23 @@
     "default": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
             "docsify": {}
         }
     },
     "port_5678": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
             "docsify": {
-                "port": "5678",
-                "livereload-port": "5679"
+                "port": "5678"
             }
         }
     },
     "docspath": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
             "docsify": {
                 "docs-path": "foobar"
             }
@@ -25,6 +27,21 @@
     "almalinux": {
         "image": "ghcr.io/almalinux/almalinux:10",
         "features":{
+            "ghcr.io/devcontainers/features/node:2": {},
+            "docsify": {}
+        }
+    },
+    "debian": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian-13",
+        "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
+            "docsify": {}
+        }
+    },
+    "fedora": {
+        "image": "fedora",
+        "features": {
+            "ghcr.io/devcontainers/features/node:2": {},
             "docsify": {}
         }
     }

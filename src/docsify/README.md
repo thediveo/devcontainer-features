@@ -1,13 +1,13 @@
 
-# docsify (docsify)
+# docsify server (docsify)
 
-Automatically serves ./docs (or another) workspace directory via 'docsify serve' in the background.
+Automatically serves ./docs (or another) workspace directory via 'browser-sync' in the background.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/thediveo/devcontainer-features/docsify:0": {}
+    "ghcr.io/thediveo/devcontainer-features/docsify:1": {}
 }
 ```
 
@@ -16,13 +16,9 @@ Automatically serves ./docs (or another) workspace directory via 'docsify serve'
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | port | TCP port serving the docsified documentation | string | 3300 |
-| livereload-port | TCP port to receive live reload events from | string | 3301 |
 | docs-path | workspace relative directory to serve from | string | docs |
-
-## OS Support
-
-Tested only with
-[mcr.microsoft.com/devcontainers/base:ubuntu](https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/base/about#about:_ubuntu).
+| reload-delay | time in milliseconds to delay the reload event following file changes | string | 2000 |
+| reload-debounce | time in milliseconds to restrict the frequency in which browser:reload events can be emitted to connected clients | string | 5000 |
 
 ## Docs Directory
 
@@ -32,6 +28,14 @@ automatically created when the devcontainer starts.
 If the directory configured in the `docs-path` does not contain any
 `index.html`, both a starter `index.html` as well as `README.md` will be
 created.
+
+## OS Support
+
+Tested with:
+- [ghcr.io/almalinux/almalinux](https://ghcr.io/almalinux/almalinux),
+- [mcr.microsoft.com/devcontainers/base:debian](https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/base/about#about:_debian),
+- [fedora](https://hub.docker.com/_/fedora),
+- [mcr.microsoft.com/devcontainers/base:ubuntu](https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/base/about#about:_ubuntu).
 
 
 ---

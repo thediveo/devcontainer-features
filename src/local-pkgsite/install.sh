@@ -161,12 +161,12 @@ wait_for_process_logfile() {
     local end=\$((now + 5))
     while true; do
         if [ -s "\${file}" ]; then
-            echo "...\${name} started"
+            echo "🚀 \${name} started"
             break
         fi
         now=\$(date +%s)
         if [ "\${now}" -ge "\${end}" ]; then
-            echo "ERROR: \${name} did not start"
+            echo "❌ ERROR: \${name} did not start"
             break
         fi
         sleep 0.25
