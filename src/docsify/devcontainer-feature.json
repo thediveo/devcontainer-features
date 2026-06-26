@@ -1,8 +1,8 @@
 {
-    "name": "docsify",
+    "name": "docsify server",
     "id": "docsify",
-    "version": "0.2.0",
-    "description": "Automatically serves ./docs (or another) workspace directory via 'docsify serve' in the background.",
+    "version": "1.0.0",
+    "description": "Automatically serves ./docs (or another) workspace directory via 'browser-sync' in the background.",
     "options": {
         "port": {
             "type": "string",
@@ -10,23 +10,27 @@
             "proposals": ["3300"],
             "default": "3300"
         },
-        "livereload-port": {
-            "type": "string",
-            "description": "TCP port to receive live reload events from",
-            "proposals": ["3301"],
-            "default": "3301"
-        },
         "docs-path": {
             "type": "string",
             "description": "workspace relative directory to serve from",
             "proposals": ["docs"],
             "default": "docs"
+        },
+        "reload-delay": {
+            "type": "string",
+            "description": "time in milliseconds to delay the reload event following file changes",
+            "proposals": ["2000"],
+            "default": "2000"
+        },
+        "reload-debounce": {
+            "type": "string",
+            "description": "time in milliseconds to restrict the frequency in which browser:reload events can be emitted to connected clients",
+            "proposals": ["5000"],
+            "default": "5000"
         }
     },
-    "dependsOn": {
-        "ghcr.io/devcontainers/features/node:2": {
-            "version": "lts"
-        }
-    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/node"
+    ],
     "postStartCommand": "/usr/local/bin/docsify-serve"
 }
