@@ -1,7 +1,7 @@
 {
     "name": "docsify server",
     "id": "docsify",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Automatically serves ./docs (or another) workspace directory via 'browser-sync' in the background.",
     "options": {
         "port": {
