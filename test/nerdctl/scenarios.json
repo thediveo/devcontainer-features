@@ -16,14 +16,13 @@
     "debian": {
         "image": "mcr.microsoft.com/devcontainers/base:debian-13",
         "features": {
-            "ghcr.io/devcontainers/features/docker-in-docker:3": {
+            "ghcr.io/devcontainers/features/docker-in-docker:4": {
                 "moby": false,
                 "dockerDashComposeVersion": "none",
                 "installDockerBuildx": false
             },
             "nerdctl": {
-                "cni-path": "/usr/local/bin/cni",
-                "containerd-api": "unix:///run/docker/containerd/containerd.sock"
+                "cni-path": "/usr/local/bin/cni"
             }
         }
     },

@@ -21,13 +21,12 @@ A local Go pkgsite serving the module documentation, with automatic browser refr
 
 ## Feature Dependency
 
-This feature has only a soft dependecy on `ghcr.io/devcontainers/features/go` so
-that you have full control over from where and how you bring in the go
-toolchain.
+This feature has a soft dependecy on `ghcr.io/devcontainers/features/go` so that
+you have full control over from where and how you bring in the go toolchain.
 
 Similar, it has a soft dependency on `ghcr.io/devcontainers/features/node` –
 depending on you base image you already have a suitable node, otherwise you
-might want to use the aforementioned node feature.
+might want to also reference the above node feature.
 
 For example:
 
@@ -35,7 +34,7 @@ For example:
 {
     "features": {
         "ghcr.io/devcontainers/features/go:1": {},
-        "ghcr.io/devcontainers/features/node:2": {}, // optional
+        "ghcr.io/devcontainers/features/node:2": {}, // unless base image has node
         "ghcr.io/thediveo/devcontainer-features/local-pkgsite:1": {}
     }
 }

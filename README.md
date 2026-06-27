@@ -40,7 +40,7 @@ Container feature that also doesn't support Alpine.
   upstream https://github.com/containernetworking/plugins binary releases.
 
 - [docsify](src/docsify/README.md) – automatically serves ./docs workspace
-  directory via `docsify serve` in the background (with the specific workspace
+  directory via `browser-sync` in the background (with the specific workspace
   location being configurable).
 
 - [gcx](src/gcx/README.md) – installs `gcx` directly from upstream

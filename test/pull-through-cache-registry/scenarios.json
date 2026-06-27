@@ -2,7 +2,7 @@
     "default": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "ghcr.io/devcontainers/features/docker-in-docker:3": {
+            "ghcr.io/devcontainers/features/docker-in-docker:4": {
                 "moby": false
             },
             "pull-through-cache-registry": {}
@@ -11,7 +11,7 @@
     "9999": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "ghcr.io/devcontainers/features/docker-in-docker:3": {
+            "ghcr.io/devcontainers/features/docker-in-docker:4": {
                 "moby": false
             },
             "pull-through-cache-registry": {
@@ -22,7 +22,7 @@
     "quay.io": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "ghcr.io/devcontainers/features/docker-in-docker:3": {
+            "ghcr.io/devcontainers/features/docker-in-docker:4": {
                 "moby": false
             },
             "pull-through-cache-registry": {

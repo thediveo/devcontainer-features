@@ -20,6 +20,23 @@ Automatically serves ./docs (or another) workspace directory via 'browser-sync' 
 | reload-delay | time in milliseconds to delay the reload event following file changes | string | 2000 |
 | reload-debounce | time in milliseconds to restrict the frequency in which browser:reload events can be emitted to connected clients | string | 5000 |
 
+## Feature Dependency
+
+This feature has a soft dependency on `ghcr.io/devcontainers/features/node` –
+depending on you base image you already have a suitable node, otherwise you
+might want to also reference the above node feature.
+
+For example:
+
+```json
+{
+    "features": {
+        "ghcr.io/devcontainers/features/node:2": {}, // unless base image has node
+        "ghcr.io/thediveo/devcontainer-features/docsify:1": {}
+    }
+}
+```
+
 ## Docs Directory
 
 If the directory configured in the `docs-path` option does not exist, it is
