@@ -158,7 +158,7 @@ fi
 
 if [ "$PINACT_VERSION" = "latest" ]; then
     # get latest release    
-    PINACT_VERSION=$(curl -s ${QUERYLATEST_URL} | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    PINACT_VERSION=$(curl -s ${QUERYLATEST_URL} | grep -m1 '"tag_name":' | sed -E 's/.*"tag_name": *"([^"]+)".*/\1/')
 fi
 
 echo "installing pinact version: ${PINACT_VERSION}"

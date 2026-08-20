@@ -1,7 +1,7 @@
 {
     "name": "lazygit",
     "id": "lazygit",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Installs lazygit from upstream https://github.com/jesseduffield/lazygit binary releases.",
     "options": {
         "version": {

@@ -1,7 +1,7 @@
 {
     "name": "gcx",
     "id": "gcx",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Installs Grafana gcx CLI from upstream https://github.com/grafana/gcx binary releases.",
     "options": {
         "version": {

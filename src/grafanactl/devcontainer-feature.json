@@ -1,7 +1,8 @@
 {
     "name": "grafanactl",
     "id": "grafanactl",
-    "version": "0.0.2",
+    "deprecated": true,
+    "version": "0.0.3",
     "description": "Installs grafanactl from upstream https://github.com/grafana/grafanactl binary releases.",
     "options": {
         "version": {

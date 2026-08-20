@@ -46,8 +46,10 @@ Container feature that also doesn't support Alpine.
 - [gcx](src/gcx/README.md) – installs `gcx` directly from upstream
   https://github.com/grafana/gcx binary releases.
 
-- [grafanactl](src/grafanactl/README.md) – installs `grafanactl` directly from
-  upstream https://github.com/grafana/grafanactl binary releases.
+- (deprecated) [grafanactl](src/grafanactl/README.md) – installs `grafanactl`
+  directly from upstream https://github.com/grafana/grafanactl binary releases.
+  Use the [gcx](src/gcx/README.md) feature instead as upstream `grafanactl` is
+  no longer maintained and replaced by `gcx`.
 
 - [gocover](src/gocover/README.md) – provides a `gocover` command to run
   conveniently unit tests and update a README.md coverage badge, supporting a
@@ -73,6 +75,9 @@ Container feature that also doesn't support Alpine.
 
 - [nerdctl](src/nerdctl/README.md) – installs `nerdctl` directly from upstream
   https://github.com/containerd/nerdctl binary releases.
+
+- [pinact](src/pinact/README.md) – installs `pinact` directly from upstream
+  https://github.com/suzuki-shunsuke/pinact binary releases.
 
 - [pin-github-action](src/pin-github-action/README.md) – provides mheaps's
   `pin-github-action` for pinning GitHub actions to specific hashes.
