@@ -158,7 +158,7 @@ fi
 
 if [ "$GCX_VERSION" = "latest" ]; then
     # get latest release    
-    GCX_VERSION=$(curl -s ${QUERYLATEST_URL} | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    GCX_VERSION=$(curl -s ${QUERYLATEST_URL} | grep -m1 '"tag_name":' | sed -E 's/.*"tag_name": *"([^"]+)".*/\1/')
 fi
 
 echo "installing gcx version: ${GCX_VERSION}"

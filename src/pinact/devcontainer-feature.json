@@ -1,7 +1,7 @@
 {
     "name": "pinact",
     "id": "pinact",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Installs pinact from upstream https://github.com/suzuki-shunsuke/pinact binary releases.",
     "options": {
         "version": {

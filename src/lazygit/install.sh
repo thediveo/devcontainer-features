@@ -158,7 +158,7 @@ fi
 
 if [ "$LAZYGIT_VERSION" = "latest" ]; then
     # get latest release    
-    LAZYGIT_VERSION=$(curl -s ${QUERYLATEST_URL} | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    LAZYGIT_VERSION=$(curl -s ${QUERYLATEST_URL} | grep -m1 '"tag_name":' | sed -E 's/.*"tag_name": *"([^"]+)".*/\1/')
 fi
 
 echo "installing lazygit version: ${LAZYGIT_VERSION}"

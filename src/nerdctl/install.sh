@@ -144,9 +144,7 @@ fi
 
 if [ "$NERDCTL_VERSION" = "latest" ]; then
     # get latest release    
-    NERDCTL_VERSION=$(curl -s ${QUERYLATEST_URL} \
-        | grep '"tag_name":' \
-        | sed -E 's/.*"([^"]+)".*/\1/')
+    NERDCTL_VERSION=$(curl -s ${QUERYLATEST_URL} | grep -m1 '"tag_name":' | sed -E 's/.*"tag_name": *"([^"]+)".*/\1/')
 fi
 
 echo "version: ${NERDCTL_VERSION}"

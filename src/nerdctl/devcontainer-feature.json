@@ -1,7 +1,7 @@
 {
     "name": "nerdctl containerd control CLI and CNI plugins",
     "id": "nerdctl",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Installs nerdctl and CNI plugins from upstream.",
     "options": {
         "version": {
