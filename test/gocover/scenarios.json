@@ -15,6 +15,15 @@
             }
         }
     },
+    "run-only-tests": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
+            "gocover": {
+                "run": "^Test"
+            }
+        }
+    },
     "html": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {

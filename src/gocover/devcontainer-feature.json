@@ -1,7 +1,7 @@
 {
     "name": "Go Coverage with Badge",
     "id": "gocover",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "a gocover command to run Go unit tests with coverages, updating the README.md with a coverage badge.",
     "keywords": [
         "go",
@@ -43,6 +43,14 @@
             "type": "string",
             "default": "",
             "description": "comma-separated list of additional build tags (-tags)"
+        },
+        "run": {
+            "type": "string",
+            "default": "",
+            "proposals": [
+                "^Test"
+            ],
+            "description": "if set, run only those tests, examples, and fuzz tests matching the regular expression"
         },
         "uncovered-packages": {
             "type": "string",

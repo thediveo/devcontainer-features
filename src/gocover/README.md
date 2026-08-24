@@ -22,6 +22,7 @@ a gocover command to run Go unit tests with coverages, updating the README.md wi
 | race | run tests with race detector enabled (-race) | boolean | true |
 | verbose | run tests with -v | boolean | true |
 | tags | comma-separated list of additional build tags (-tags) | string | - |
+| run | if set, run only those tests, examples, and fuzz tests matching the regular expression | string | - |
 | uncovered-packages | space separated optional list of package patterns to exclude from coverage analysis | string | - |
 | green | percentage number for the badge to become green | string | 80 |
 | yellow | percentage number for the badge to become yellow | string | 50 |
