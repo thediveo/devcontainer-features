@@ -8,6 +8,7 @@ HTML=${HTML:-false}
 COUNT=${COUNT:-1}
 NUM_PROGRAMS=${NUM_PROGRAMS} # ...just a reminder
 RACE=${RACE:-true}
+#RUN=${RUN}
 VERBOSE=${VERBOSE:-true}
 GREEN=${GREEN:-80}
 YELLOW=${YELLOW:-50}
@@ -27,11 +28,14 @@ tee "${GOCOVER_PATH}" > /dev/null \
 << EOF
 #!/usr/bin/env bash
 
+set -e
+
 ROOT="${ROOT}"
 HTML="${HTML}"
 COUNT="${COUNT}"
 NUM_PROGRAMS="${NUM_PROGRAMS}"
 RACE="${RACE}"
+RUN="${RUN}"
 TAGS="${TAGS}"
 VERBOSE="${VERBOSE}"
 IGNORE_PKGS=("${IGNORE_PKGS[@]}")
@@ -88,6 +92,7 @@ trap 'rm -rf -- "\${GOCOVERTMPDIR}"' EXIT
 [[ "\${RACE}" = "true" ]] && RACE="-race" || unset RACE
 [[ "\${VERBOSE}" = "true" ]] && VERBOSE="-v" || unset VERBOSE
 [[ -n "\${TAGS}" ]] && TAGS="-tags=\${TAGS}" || unset TAGS
+[[ -n "\${RUN}" ]] && RUN="-run=\${RUN}" || unset RUN
 
 [[ \${#POSARGS[@]} -eq 0 ]] && POSARGS+="./..."
 
@@ -97,6 +102,7 @@ if [[ -n "\${ROOT+x}" ]]; then
         \${VERBOSE} \
         \${RACE} \
         -count=\${COUNT} \${NUM_PROGRAMS} \
+        \${RUN} \
         \${TAGS} \
         \${COVERPKG} \
         \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
@@ -105,6 +111,7 @@ go test -cover \
     \${VERBOSE} \
     \${RACE} \
     -count=\${COUNT} \${NUM_PROGRAMS} \
+    \${RUN} \
     \${TAGS} \
     \${COVERPKG} \
     \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
