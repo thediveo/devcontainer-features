@@ -1,7 +1,7 @@
 {
     "name": "Go Coverage with Badge",
     "id": "gocover",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "a gocover command to run Go unit tests with coverages, updating the README.md with a coverage badge.",
     "keywords": [
         "go",

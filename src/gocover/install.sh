@@ -1,47 +1,96 @@
 #!/usr/bin/env bash
-set -e
+set -Eeuo pipefail
 
 GOCOVER_PATH="/usr/local/bin/gocover"
 
-ROOT=${ROOT:-false}
-HTML=${HTML:-false}
-COUNT=${COUNT:-1}
-NUM_PROGRAMS=${NUM_PROGRAMS} # ...just a reminder
-RACE=${RACE:-true}
-#RUN=${RUN}
-VERBOSE=${VERBOSE:-true}
-GREEN=${GREEN:-80}
-YELLOW=${YELLOW:-50}
+ROOT="${ROOT:-false}"
+HTML="${HTML:-false}"
+COUNT="${COUNT:-1}"
+NUM_PROGRAMS="${NUM_PROGRAMS:-}"
+RACE="${RACE:-true}"
+RUN="${RUN:-}"
+TAGS="${TAGS:-}"
+VERBOSE="${VERBOSE:-true}"
+GREEN="${GREEN:-80}"
+YELLOW="${YELLOW:-50}"
 
-readarray -d, -t IGNORE_PKGS < <(printf '%s' "${UNCOVERED_PACKAGES}")
+IGNORE_PKGS=()
+
+if [[ -n "${UNCOVERED_PACKAGES:-}" ]]; then
+    IFS=',' read -r -a IGNORE_PKGS <<< "${UNCOVERED_PACKAGES}"
+fi
+
+# Validate installation configuration.
+[[ "${ROOT}" == "true" || "${ROOT}" == "false" ]] || {
+    echo "ERROR: ROOT must be true or false." >&2
+    exit 1
+}
+
+[[ "${HTML}" == "true" || "${HTML}" == "false" ]] || {
+    echo "ERROR: HTML must be true or false." >&2
+    exit 1
+}
+
+[[ "${RACE}" == "true" || "${RACE}" == "false" ]] || {
+    echo "ERROR: RACE must be true or false." >&2
+    exit 1
+}
+
+[[ "${VERBOSE}" == "true" || "${VERBOSE}" == "false" ]] || {
+    echo "ERROR: VERBOSE must be true or false." >&2
+    exit 1
+}
+
+[[ "${COUNT}" =~ ^[1-9][0-9]*$ ]] || {
+    echo "ERROR: COUNT must be a positive integer." >&2
+    exit 1
+}
+
+[[ -z "${NUM_PROGRAMS}" || "${NUM_PROGRAMS}" =~ ^[1-9][0-9]*$ ]] || {
+    echo "ERROR: NUM_PROGRAMS must be a positive integer." >&2
+    exit 1
+}
+
+for value in "${GREEN}" "${YELLOW}"; do
+    [[ "${value}" =~ ^[0-9]+$ ]] && (( value <= 100 )) || {
+        echo "ERROR: GREEN and YELLOW must be between 0 and 100." >&2
+        exit 1
+    }
+done
 
 echo "Activating feature 'gocoverbadge'..."
 
-mkdir -p /tmp/gotools
-export GOCACHE=/tmp/gotools/cache
-
+# Install gobadge.
 go install github.com/AlexBeauchemin/gobadge@latest
 
-rm -rf /tmp/gotools
+GOBADGE="$(go env GOBIN)"
+[[ -n "${GOBADGE}" ]] || GOBADGE="$(go env GOPATH)/bin"
 
-tee "${GOCOVER_PATH}" > /dev/null \
-<< EOF
+if [[ ! -x "${GOBADGE}/gobadge" ]]; then
+    echo "ERROR: gobadge installation failed." >&2
+    exit 1
+fi
+
+install -m 0755 "${GOBADGE}/gobadge" /usr/local/bin/gobadge
+
+# Generate gocover.
+{
+    cat <<'EOF'
 #!/usr/bin/env bash
 
-set -e
+set -Eeuo pipefail
 
-ROOT="${ROOT}"
-HTML="${HTML}"
-COUNT="${COUNT}"
-NUM_PROGRAMS="${NUM_PROGRAMS}"
-RACE="${RACE}"
-RUN="${RUN}"
-TAGS="${TAGS}"
-VERBOSE="${VERBOSE}"
-IGNORE_PKGS=("${IGNORE_PKGS[@]}")
+EOF
+
+    # Safely serialize configuration variables.
+    declare -p ROOT HTML COUNT NUM_PROGRAMS RACE RUN TAGS VERBOSE GREEN YELLOW IGNORE_PKGS
+
+    cat <<'EOF'
+
 POSARGS=()
-while [[ \$# -gt 0 ]]; do
-    case \$1 in
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
         -r|-root|--root)
             ROOT="true"
             shift
@@ -59,71 +108,147 @@ while [[ \$# -gt 0 ]]; do
             shift
             ;;
         -tags|--tags)
-            TAGS="\$2"
+            if [[ $# -lt 2 ]]; then
+                echo "ERROR: --tags requires an argument." >&2
+                exit 1
+            fi
+            TAGS="$2"
             shift 2
             ;;
         *)
-            POSARGS+=("\$1")
+            POSARGS+=("$1")
             shift
             ;;
     esac
 done
 
-# Are packages going to be excluded from the coverage analysis in order to not
-# skew the coverage results?
-if [[ -n \${#IGNORE_PKGS[@]} ]]; then
-    FILTER_PATTERN="\$(printf '^%s$|' "\${IGNORE_PKGS[@]}" | sed 's/|$//')"
-    COVERPKG_LIST=\$(go list ./... | grep -v -E "\${FILTER_PATTERN}" | tr '\n' ',' | sed 's/,$//')
-    COVERPKG="-coverpkg=\${COVERPKG_LIST}"
+# Validate runtime configuration.
+[[ "${ROOT}" == "true" || "${ROOT}" == "false" ]] || {
+    echo "ERROR: ROOT must be true or false." >&2
+    exit 1
+}
+
+[[ "${HTML}" == "true" || "${HTML}" == "false" ]] || {
+    echo "ERROR: HTML must be true or false." >&2
+    exit 1
+}
+
+[[ "${RACE}" == "true" || "${RACE}" == "false" ]] || {
+    echo "ERROR: RACE must be true or false." >&2
+    exit 1
+}
+
+[[ "${VERBOSE}" == "true" || "${VERBOSE}" == "false" ]] || {
+    echo "ERROR: VERBOSE must be true or false." >&2
+    exit 1
+}
+
+[[ "${COUNT}" =~ ^[1-9][0-9]*$ ]] || {
+    echo "ERROR: Invalid COUNT." >&2
+    exit 1
+}
+
+# Default package selection.
+if [[ ${#POSARGS[@]} -eq 0 ]]; then
+    POSARGS+=("./...")
 fi
 
-# First, we set up a temporary directory to receive the coverage (binary)
-# files...
-GOCOVERTMPDIR="\$(mktemp -d)"
-trap 'rm -rf -- "\${GOCOVERTMPDIR}"' EXIT
+# Determine packages included in coverage.
+COVERPKG=()
 
-# Now run the (unit) tests with coverage, but don't use the existing textual
-# format and instead tell "go test" to produce the new binary coverage data file
-# format. This way we can easily run multiple coverage (integration) tests, as
-# needed, without worrying about how to aggregate the coverage data later. The
-# new Go toolchain already does this for us.
-[[ -n "\${NUM_PROGRAMS}" ]] && NUM_PROGRAMS="-p=\${NUM_PROGRAMS}"
-[[ "\${ROOT}" = "true" ]] && ROOT="-exec=sudo" || unset ROOT
-[[ "\${RACE}" = "true" ]] && RACE="-race" || unset RACE
-[[ "\${VERBOSE}" = "true" ]] && VERBOSE="-v" || unset VERBOSE
-[[ -n "\${TAGS}" ]] && TAGS="-tags=\${TAGS}" || unset TAGS
-[[ -n "\${RUN}" ]] && RUN="-run=\${RUN}" || unset RUN
+if (( ${#IGNORE_PKGS[@]} > 0 )); then
 
-[[ \${#POSARGS[@]} -eq 0 ]] && POSARGS+="./..."
+    # Discover packages and propagate go list failures.
+    if ! PKG_OUTPUT="$(go list ./...)"; then
+        echo "ERROR: Failed to discover Go packages." >&2
+        exit 1
+    fi
 
-if [[ -n "\${ROOT+x}" ]]; then
-    go test -cover \
-        \${ROOT} \
-        \${VERBOSE} \
-        \${RACE} \
-        -count=\${COUNT} \${NUM_PROGRAMS} \
-        \${RUN} \
-        \${TAGS} \
-        \${COVERPKG} \
-        \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
+    ALL_PKGS=()
+    mapfile -t ALL_PKGS <<< "${PKG_OUTPUT}"
+
+    COVERPKG_LIST=()
+
+    for pkg in "${ALL_PKGS[@]}"; do
+        excluded=false
+
+        for ignored in "${IGNORE_PKGS[@]}"; do
+            if [[ "${pkg}" == "${ignored}" ]]; then
+                excluded=true
+                break
+            fi
+        done
+
+        if [[ "${excluded}" == false ]]; then
+            COVERPKG_LIST+=("${pkg}")
+        fi
+    done
+
+    if (( ${#COVERPKG_LIST[@]} == 0 )); then
+        echo "ERROR: No packages remain for coverage." >&2
+        exit 1
+    fi
+
+    COVERPKG+=("-coverpkg=$(IFS=,; echo "${COVERPKG_LIST[*]}")")
 fi
-go test -cover \
-    \${VERBOSE} \
-    \${RACE} \
-    -count=\${COUNT} \${NUM_PROGRAMS} \
-    \${RUN} \
-    \${TAGS} \
-    \${COVERPKG} \
-    \${POSARGS[@]} -args -test.gocoverdir="\${GOCOVERTMPDIR}"
 
-# Finally transform the coverage information collected in potentially multiple
-# runs into the well-proven textual format so we can process it as we have come
-# to learn and love.
-go tool covdata textfmt -i="\${GOCOVERTMPDIR}" -o="\${GOCOVERTMPDIR}/coverage.out"
-if [[ "\${HTML}" = "true" ]]; then
-    go tool cover -html="\${GOCOVERTMPDIR}/coverage.out" -o=coverage.html
+# Create temporary coverage directory.
+GOCOVERTMPDIR="$(mktemp -d)"
+trap 'rm -rf -- "${GOCOVERTMPDIR}"' EXIT
+
+# Construct common Go test arguments.
+GO_ARGS=(
+    -cover
+    "-count=${COUNT}"
+)
+
+[[ "${RACE}" == "true" ]] && GO_ARGS+=(-race)
+[[ "${VERBOSE}" == "true" ]] && GO_ARGS+=(-v)
+[[ -n "${NUM_PROGRAMS}" ]] && GO_ARGS+=("-p=${NUM_PROGRAMS}")
+[[ -n "${TAGS}" ]] && GO_ARGS+=("-tags=${TAGS}")
+[[ -n "${RUN}" ]] && GO_ARGS+=("-run=${RUN}")
+
+GO_ARGS+=("${COVERPKG[@]}")
+
+# Execute tests as root when requested.
+if [[ "${ROOT}" == "true" ]]; then
+    ROOT_ARGS=("${GO_ARGS[@]}" -exec=sudo)
+    ROOT_ARGS+=("${POSARGS[@]}")
+    ROOT_ARGS+=(-args "-test.gocoverdir=${GOCOVERTMPDIR}")
+
+    go test "${ROOT_ARGS[@]}"
 fi
-go tool cover -func="\${GOCOVERTMPDIR}/coverage.out" -o=/proc/self/fd/1 \
-    | gobadge -filename=/proc/self/fd/0 -green=${GREEN} -yellow=${YELLOW}
+
+# Execute tests as the current user.
+USER_ARGS=("${GO_ARGS[@]}")
+USER_ARGS+=("${POSARGS[@]}")
+USER_ARGS+=(-args "-test.gocoverdir=${GOCOVERTMPDIR}")
+
+go test "${USER_ARGS[@]}"
+
+# Convert binary coverage data to textual format.
+go tool covdata textfmt \
+    -i="${GOCOVERTMPDIR}" \
+    -o="${GOCOVERTMPDIR}/coverage.out"
+
+# Generate HTML report.
+if [[ "${HTML}" == "true" ]]; then
+    go tool cover \
+        -html="${GOCOVERTMPDIR}/coverage.out" \
+        -o=coverage.html
+fi
+
+# Generate coverage badge.
+go tool cover \
+    -func="${GOCOVERTMPDIR}/coverage.out" \
+    | gobadge \
+        -filename=/dev/stdin \
+        -green="${GREEN}" \
+        -yellow="${YELLOW}"
+
 EOF
+} > "${GOCOVER_PATH}"
+
 chmod 0755 "${GOCOVER_PATH}"
+
+echo "gocoverbadge installed successfully."
