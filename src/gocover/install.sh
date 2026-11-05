@@ -17,7 +17,8 @@ YELLOW="${YELLOW:-50}"
 IGNORE_PKGS=()
 
 if [[ -n "${UNCOVERED_PACKAGES:-}" ]]; then
-    IFS=',' read -r -a IGNORE_PKGS <<< "${UNCOVERED_PACKAGES}"
+    # documented as space separated, but also accept commas.
+    IFS=$' \t,' read -r -a IGNORE_PKGS <<< "${UNCOVERED_PACKAGES}"
 fi
 
 # Validate installation configuration.
