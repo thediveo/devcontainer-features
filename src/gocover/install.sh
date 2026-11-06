@@ -154,44 +154,44 @@ if [[ ${#POSARGS[@]} -eq 0 ]]; then
     POSARGS+=("./...")
 fi
 
-# Determine packages included in coverage.
-COVERPKG=()
+# Determine packages included in coverage: always all packages of the module
+# (minus the uncovered ones), so that code exercised by the tests of other
+# packages counts as covered too.
+LIST_ARGS=()
+[[ -n "${TAGS}" ]] && LIST_ARGS+=("-tags=${TAGS}")
 
-if (( ${#IGNORE_PKGS[@]} > 0 )); then
+# Discover packages and propagate go list failures.
+if ! PKG_OUTPUT="$(go list "${LIST_ARGS[@]}" ./...)"; then
+    echo "ERROR: Failed to discover Go packages." >&2
+    exit 1
+fi
 
-    # Discover packages and propagate go list failures.
-    if ! PKG_OUTPUT="$(go list ./...)"; then
-        echo "ERROR: Failed to discover Go packages." >&2
-        exit 1
-    fi
+ALL_PKGS=()
+mapfile -t ALL_PKGS <<< "${PKG_OUTPUT}"
 
-    ALL_PKGS=()
-    mapfile -t ALL_PKGS <<< "${PKG_OUTPUT}"
+COVERPKG_LIST=()
 
-    COVERPKG_LIST=()
+for pkg in "${ALL_PKGS[@]}"; do
+    excluded=false
 
-    for pkg in "${ALL_PKGS[@]}"; do
-        excluded=false
-
-        for ignored in "${IGNORE_PKGS[@]}"; do
-            if [[ "${pkg}" == "${ignored}" ]]; then
-                excluded=true
-                break
-            fi
-        done
-
-        if [[ "${excluded}" == false ]]; then
-            COVERPKG_LIST+=("${pkg}")
+    for ignored in "${IGNORE_PKGS[@]}"; do
+        if [[ "${pkg}" == "${ignored}" ]]; then
+            excluded=true
+            break
         fi
     done
 
-    if (( ${#COVERPKG_LIST[@]} == 0 )); then
-        echo "ERROR: No packages remain for coverage." >&2
-        exit 1
+    if [[ "${excluded}" == false ]]; then
+        COVERPKG_LIST+=("${pkg}")
     fi
+done
 
-    COVERPKG+=("-coverpkg=$(IFS=,; echo "${COVERPKG_LIST[*]}")")
+if (( ${#COVERPKG_LIST[@]} == 0 )); then
+    echo "ERROR: No packages remain for coverage." >&2
+    exit 1
 fi
+
+COVERPKG=("-coverpkg=$(IFS=,; echo "${COVERPKG_LIST[*]}")")
 
 # Create temporary coverage directory.
 GOCOVERTMPDIR="$(mktemp -d)"

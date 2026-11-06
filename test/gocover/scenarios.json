@@ -59,5 +59,12 @@
                 "uncovered-packages": "example.com/foo/bar example.com/foo/baz"
             }
         }
+    },
+    "cross-package": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "ghcr.io/devcontainers/features/go:1": {},
+            "gocover": {}
+        }
     }
 }
