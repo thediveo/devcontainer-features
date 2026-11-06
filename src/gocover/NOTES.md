@@ -23,6 +23,10 @@ When run without any flags and arguments, `gocover` will run the unit tests
 using `go test` on all packages in the Go module in the workspace, and update
 the `README.md` file with a badge showing the coverage percentage.
 
+Coverage is always collected across all packages of the Go module (except for
+the `uncovered-packages`), so code exercised only by the tests of other
+packages counts as covered, too.
+
 ### `gocover` CLI Flags
 
 | Flag | Meaning |
